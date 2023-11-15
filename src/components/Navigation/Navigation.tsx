@@ -22,7 +22,7 @@ export const Navigation = ({ menus }: Props) => {
                 <NavLink
                     to={menu.link}
                     key={menu.name}
-                    className={location.pathname === menu.link ? styles.nav_menu__active : styles.nav_menu}
+                    className={location.pathname === menu.link ? styles.nav_menu__active : styles.nav_menu__noactive}
                 >
                     <li>{menu.name}</li>
                 </NavLink>
@@ -30,3 +30,4 @@ export const Navigation = ({ menus }: Props) => {
         </ul>
     );
 };
+

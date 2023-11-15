@@ -2,6 +2,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import './global.scss';
+import './media.css'
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 

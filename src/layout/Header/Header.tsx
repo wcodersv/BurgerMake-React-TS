@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './Header.module.scss';
 import Logo from '../../components/Logo';
 import Navigation from '../../components/Navigation';
+import ButtonCall from '../../components/ButtonCall';
 
 export const Header = () => {
     let menus = [
@@ -26,15 +27,14 @@ export const Header = () => {
                 </nav>
 
                 <div className={styles.header_information}>
-                    <div className={styles.header_information__call}>
-                        <img
-                            src='/assets/svg/header-call.svg'
-                            alt=' '
-                        />
-                        <p>Call Me Back</p>
-                    </div>
+                    <ButtonCall />
 
-                    <a href='tel: 88004378722' className={styles.header_information__tel}>8 800 437-87-22</a>
+                    <a
+                        href='tel: 88004378722'
+                        className={styles.header_information__tel}
+                    >
+                        8 800 437-87-22
+                    </a>
                 </div>
             </div>
         </header>
