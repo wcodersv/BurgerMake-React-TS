@@ -1,0 +1,17 @@
+.logo {
+    display: flex;
+    padding: 1.25rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.1875rem;
+    background: var(--clr-titan-white);
+
+
+    a {
+        display: flex;
+        width: 2.5rem;
+        height: 2.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+}

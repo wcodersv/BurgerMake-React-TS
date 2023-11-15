@@ -1,0 +1,25 @@
+.btn {
+    display: flex;
+    width: 9rem;
+    height: 9rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background: var(--clr-primary);
+
+    position: absolute;
+    top: 60%;
+    left: 6%;
+    transform-origin: center;
+
+    a {
+        text-decoration: none;
+        color: var(--clr-white);
+        text-align: center;
+        font-size: var(--fs-24);
+        font-style: normal;
+        font-weight: var(--fw-extra-bold);
+        line-height: 1.875rem;
+        text-transform: uppercase;
+    }
+}

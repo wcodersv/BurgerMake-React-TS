@@ -1,0 +1,41 @@
+.burger {
+    position: absolute;
+    left: 0;
+    top: 80%;
+
+    &_piece {
+        transition: all .3s ease-out;
+    }
+}
+
+.emoji {
+    &_love {
+        opacity: 0;
+        animation: emj-show .5s ease 400ms forwards;
+    }
+
+    &_explosion {
+        opacity: 0;
+        animation: emj-show .5s ease 500ms forwards;
+    }
+
+    &_holiday {
+        opacity: 0;
+        animation: emj-show .5s ease 600ms forwards;
+    }
+
+    &_ok {
+        opacity: 0;
+        animation: emj-show .5s ease 700ms forwards;
+    }
+}
+
+@keyframes emj-show {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}

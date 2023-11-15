@@ -1,0 +1,66 @@
+@keyframes shake {
+    0% {
+
+        transform: rotateZ(0) translateY(0%) translateX(0)
+    }
+
+    9% {
+
+        transform: rotateZ(3deg) translateY(0%) translateX(20px)
+    }
+
+    18% {
+
+        transform: rotateZ(-2deg) translateY(0%) translateX(-18px)
+    }
+
+    27% {
+
+        transform: rotateZ(1deg) translateY(0%) translateX(16px)
+    }
+
+    36% {
+
+        transform: rotateZ(-3deg) translateY(0%) translateX(-14px)
+    }
+
+    45% {
+
+        transform: rotateZ(2deg) translateY(0%) translateX(12px)
+    }
+
+    54% {
+
+        transform: rotateZ(-1deg) translateY(0%) translateX(-10px)
+    }
+
+    63% {
+
+        transform: rotateZ(3deg) translateY(0%) translateX(8px)
+    }
+
+    72% {
+
+        transform: rotateZ(-2deg) translateY(0%) translateX(-6px)
+    }
+
+    81% {
+
+        transform: rotateZ(1deg) translateY(0%) translateX(4px)
+    }
+
+    90% {
+
+        transform: rotateZ(-1deg) translateY(0%) translateX(-2px)
+    }
+
+    100% {
+
+        transform: rotateZ(0deg) translateY(0%) translateX(0)
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease infinite;
+}
+

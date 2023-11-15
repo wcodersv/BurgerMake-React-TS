@@ -1,0 +1,56 @@
+.footer {
+    &_container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        padding-bottom: 0px;
+        margin: 2rem auto;
+
+        /* text */
+        font-size: var(--fs-12);
+        font-style: normal;
+        font-weight: var(--fw-regular);
+        line-height: normal;
+    }
+
+
+    &_information {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        &_copyright {
+            color: var(--clr-muted);
+        }
+
+        &_link {
+            display: flex;
+
+            a {
+                color: var(--clr-primary);
+            }
+
+            span {
+                display: inline-block;
+                margin: 0 0.25px;
+                color: var(--clr-muted);
+            }
+        }
+    }
+
+
+    &_payment {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+
+        image {
+            width: 2.1875rem;
+            height: 1.5rem;
+        }
+    }
+}
