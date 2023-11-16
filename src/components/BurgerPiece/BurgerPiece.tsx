@@ -1,8 +1,8 @@
-// BurgerLayer.tsx
+// BurgerPiece.tsx
 import React from 'react';
-import styles from './BurgerLayer.module.scss';
+import styles from './BurgerPiece.module.scss';
 
-interface BurgerLayerProps {
+interface BurgerPieceProps {
     name: string;
     src: string;
     alt: string;
@@ -12,7 +12,7 @@ interface BurgerLayerProps {
     transform?: string;
 }
 
-const BurgerLayer: React.FC<BurgerLayerProps> = ({ name, src, alt, width, height, position, transform }) => {
+export const BurgerPiece: React.FC<BurgerPieceProps> = ({ name, src, alt, width, height, position, transform }) => {
 
     const classNames = `${styles.burger} 
     ${name === 'love' ? styles.emoji_love :
@@ -38,5 +38,3 @@ const BurgerLayer: React.FC<BurgerLayerProps> = ({ name, src, alt, width, height
         </picture>
     );
 };
-
-export default BurgerLayer;

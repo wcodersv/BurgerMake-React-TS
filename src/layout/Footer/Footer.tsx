@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
     let paymentMethods = ['visacard', 'mastercard', 'google-pay', 'apple-pay', 'paypal', 'bitkoin', 'etherium'];
+
+    
     return (
         <footer className={`${styles.footer_container} container`}>
             <div className={styles.footer_information}>

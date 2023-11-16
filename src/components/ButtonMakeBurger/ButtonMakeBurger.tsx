@@ -15,6 +15,7 @@ export const ButtonMakeBurger = () => {
         return () => clearTimeout(timeoutId);
     }, []);
 
+    // Анимационные свойства для реакции на изменения showButton
     const springProps = useSpring({
         opacity: showButton ? 1 : 0,
         transform: showButton ? 'scale(1)' : 'scale(0)',

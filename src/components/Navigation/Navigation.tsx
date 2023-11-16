@@ -3,7 +3,6 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 
-
 interface Menu {
     name: string;
     link: string;
@@ -30,4 +29,3 @@ export const Navigation = ({ menus }: Props) => {
         </ul>
     );
 };
-

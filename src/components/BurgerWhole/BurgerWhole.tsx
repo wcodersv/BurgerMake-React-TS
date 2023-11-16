@@ -1,10 +1,9 @@
 // BurgerWhole.tsx
 import React from 'react';
 import styles from './BurgerWhole.module.scss';
-import BurgerLayer from '../BurgerLayer';
+import BurgerPiece from '../BurgerPiece';
 
-
-interface Props {
+interface BurgerWholeProps {
     ingredients?: {
         name: string,
         src: string;
@@ -17,13 +16,13 @@ interface Props {
     }[];
 }
 
-export const BurgerWhole: React.FC<Props> = ({ ingredients = [] }) => {
+export const BurgerWhole: React.FC<BurgerWholeProps> = ({ ingredients = [] }) => {
 
     return (
         <div className={styles.burger}>
             {
                 ingredients.map((ingredient, index) => (
-                    <BurgerLayer
+                    <BurgerPiece
                         key={index}
                         name={ingredient.name}
                         src={ingredient.src}
@@ -38,4 +37,3 @@ export const BurgerWhole: React.FC<Props> = ({ ingredients = [] }) => {
         </div>
     );
 };
-
