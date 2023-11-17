@@ -1,23 +1,58 @@
 // MakeBurger.tsx
-import React from 'react';
-import styles from './MakeBurgerPage.module.css';
-import BurgerWhole from '../../components/BurgerWhole';
+import React, { useEffect, useState } from 'react';
+import styles from './MakeBurgerPage.module.scss';
+import Summary from '../../components/Summary';
+import Ingredient from '../../components/Ingredient';
+import ingredientsData from '../../data/BurgerIngredients.json';
+
 
 
 export const MakeBurgerPage = () => {
+
+    const [burger, setBurger] = useState([ingredientsData[0]])
+    const ingredientsDataFilter = ingredientsData.filter(ingredient => ingredient.name !== 'Bun-top' && ingredient.name !== 'Bun-bottom')
+
+
+    const addIngredient = () => {
+        
+    }
+
+
     return (
-        <>
-            <div>
-                <h1>MakeBurgerPage</h1>
-                <p style={{ 'height': '200px', 'border': '2px solid blue' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veritatis similique, quae nulla beatae non corrupti, porro et sint rerum sapiente provident fugit quisquam ex molestias deleniti expedita numquam ipsa!
-                    Voluptates veniam quasi labore reprehenderit odit sint quisquam molestiae fuga distinctio, quaerat, porro, nobis officiis doloribus commodi. Cupiditate libero iusto, non magni quibusdam unde architecto dolor veritatis atque beatae dolorum?cepturi officiis eius dolorum provident alias voluptatum maiores ducimus ipsum eligendi voluptates autem veniam totam a praesentium doloremque minus, labore suscipit impedit deleniti unde quisquam distinctio temporibus. Sunt, porro deserunt?
-                </p>
-                <div style={{ 'height': '600px', 'border': '2px solid yellow', width: '100%' }}>
-                    <BurgerWhole />
+        <main>
+            <div className={`${styles.main_container} container`}>
+                <h1 className={styles.main_header}>Make <br /> Your <br /> Burger </h1>
+                <div className={styles.main_grid}>
+
+
+                    <div className={styles.main_burger}>
+                        <div className={styles.main_burger__scene}>
+                            {burger.map((ingredient, index) => (
+                                <img
+                                key={`${ingredient.name}-${index}`}
+                                    className={styles.main_burger__scene__element}
+                                    src={ingredient.img}
+                                    alt="Bun-bottom"
+                                />
+                            ))}
+                        </div>
+
+                    </div>
+                    <div className={styles.main_summary}>
+                        <Summary />
+                    </div>
                 </div>
 
-
+                <div className={styles.main_ingredients}>
+                    {ingredientsDataFilter.map((ingredient, index) => (
+                        <Ingredient
+                            name={ingredient.name}
+                            imgSrc={ingredient.img}
+                            key={`${ingredient.name}-${index}`}
+                        />
+                    ))}
+                </div>
             </div>
-        </>
+        </main>
     )
 }

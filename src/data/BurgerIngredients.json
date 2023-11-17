@@ -1,0 +1,97 @@
+[
+   {
+      "name": "Bun-bottom",
+      "kcal": 90,
+      "oz": 0.2,
+      "price": 1,
+      "min": 3,
+      "img": "/assets/burger/bun_bottom_show.svg",
+      "width": 6,
+      "auto": true
+   },
+   {
+      "name": "Bun-top",
+      "kcal": 120,
+      "oz": 0.2,
+      "price": 1,
+      "min": 3,
+      "img": "/assets/burger/bun_top.svg",
+      "width": 0,
+      "auto": true
+   },
+   {
+      "name": "Cutlet",
+      "kcal": 249,
+      "oz": 0.2,
+      "price": 4.3,
+      "min": 3,
+      "img": "/assets/burger/cutlet.svg",
+      "width": 3
+   },
+   {
+      "name": "Mayo",
+      "kcal": 120,
+      "oz": 0.1,
+      "price": 1.4,
+      "min": 0.5,
+      "img": "/assets/burger/mayo.svg",
+      "width": 1
+   },
+   {
+      "name": "Onion",
+      "kcal": 50,
+      "oz": 0.1,
+      "price": 1.1,
+      "min": 0.3,
+      "img": "/assets/burger/onion.svg",
+      "img_group": "img/data/onion_group.png",
+      "width": 3
+   },
+   {
+      "name": "Tomato",
+      "kcal": 60,
+      "oz": 0.2,
+      "price": 1,
+      "min": 0.5,
+      "img": "/assets/burger/tomatoe.svg",
+      "img_group": "img/data/tomato_group.png",
+      "width": 4
+   },
+   {
+      "name": "Cucumber",
+      "kcal": 70,
+      "oz": 0.2,
+      "price": 1,
+      "min": 1,
+      "img": "/assets/burger/cucumber.svg",
+      "img_group": "img/data/cucumber_group.png",
+      "width": 2.5
+   },
+   {
+      "name": "Cheese",
+      "kcal": 90,
+      "oz": 0.2,
+      "price": 1,
+      "min": 0.4,
+      "img": "/assets/burger/cheese.svg",
+      "width": 2.5
+   },
+   {
+      "name": "Salad",
+      "kcal": 40,
+      "oz": 0.2,
+      "price": 1,
+      "min": 1.2,
+      "img": "/assets/burger/salad.svg",
+      "width": 3
+   },
+   {
+      "name": "Bun",
+      "kcal": 120,
+      "oz": 0.2,
+      "price": 1,
+      "min": 1,
+      "img": "/assets/burger/bun_middle.svg",
+      "width": 4
+   }
+]
