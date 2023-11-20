@@ -4,11 +4,15 @@ import styles from './ButtonAddDelete.module.scss';
 
 interface ButtonProps {
     imgSrc: string,
+    onClick: () => void,
 }
 
-export const ButtonAddDelete = ({ imgSrc }: ButtonProps) => {
+export const ButtonAddDelete = ({ imgSrc, onClick }: ButtonProps) => {
     return (
-        <button className={styles.body}>
+        <button
+            className={styles.body}
+            onClick={onClick}
+        >
             <img src={imgSrc} alt=" " />
         </button>
     )

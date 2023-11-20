@@ -24,6 +24,10 @@
 
         &_copyright {
             color: var(--clr-muted);
+
+            a {
+                color: var(--clr-primary);
+            }
         }
 
         &_link {

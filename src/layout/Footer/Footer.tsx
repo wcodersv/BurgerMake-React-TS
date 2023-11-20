@@ -10,7 +10,7 @@ export const Footer = () => {
     return (
         <footer className={`${styles.footer_container} container`}>
             <div className={styles.footer_information}>
-                <p className={styles.footer_information_copyright}>2023. Make Your Burger</p>
+                <p className={styles.footer_information_copyright}>2023. Make Your Burger © <a href='https://github.com/wcodersv' target="_blank" rel="noreferrer">wcodersv</a></p>
                 <div className={styles.footer_information_link}>
                     <Link to='/'>Privacy Policy</Link>
                     <span>|</span>
