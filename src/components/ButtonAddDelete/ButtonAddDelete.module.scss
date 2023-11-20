@@ -10,13 +10,20 @@
     width: 1.75rem;
     height: 1.75rem;
 
+    font-size: var(--fs-20);
+    color: var(--clr-primary);
+
     &:hover {
         cursor: pointer;
+        background-color: var(--clr-primary);
+        color: var(--clr-titan-white);
     }
 
-    span {
-        font-size: (--fs-16);
-        flex-shrink: 0;
-        color: var(--clr-primary);
+    &:disabled{
+        background-color: var(--clr-titan-white);
+        color:  var(--clr-primary);
     }
+
 }
+
+

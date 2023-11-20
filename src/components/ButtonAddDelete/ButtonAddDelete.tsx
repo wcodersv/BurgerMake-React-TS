@@ -3,17 +3,19 @@ import React from 'react';
 import styles from './ButtonAddDelete.module.scss';
 
 interface ButtonProps {
-    imgSrc: string,
+    content: string,
+    disabled?: boolean,
     onClick: () => void,
 }
 
-export const ButtonAddDelete = ({ imgSrc, onClick }: ButtonProps) => {
+export const ButtonAddDelete = ({ content, disabled, onClick }: ButtonProps) => {
     return (
         <button
             className={styles.body}
             onClick={onClick}
+            disabled={disabled}
         >
-            <img src={imgSrc} alt=" " />
+            {content}
         </button>
     )
 }

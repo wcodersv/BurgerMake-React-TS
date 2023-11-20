@@ -1,5 +1,5 @@
 // MakeBurger.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './MakeBurgerPage.module.scss';
 import Summary from '../../components/Summary';
 import Ingredient from '../../components/Ingredient';
@@ -7,18 +7,36 @@ import ingredientsData from '../../data/BurgerIngredients.json';
 
 export const MakeBurgerPage = () => {
     interface Ingredient {
-        name: string;
-        img: string;
+        name: string,
+        kcal: number,
+        oz: number,
+        price: number,
+        time: number,
+        img: string,
     }
 
-    const [burger, setBurger] = useState<Ingredient[]>([ingredientsData[0]]); 
+    const initialIngredient = ingredientsData[0];
+    const [burger, setBurger] = useState<Ingredient[]>([initialIngredient]);
+    const [time, setTime] = useState<number>(initialIngredient.time);
+    const [weight, setWeight] = useState<number>(initialIngredient.oz);
+    const [kcal, setKcal] = useState<number>(initialIngredient.kcal);
+    const [price, setPrice] = useState<number>(initialIngredient.price);
+
+
     const ingredientsDataFilter = ingredientsData.filter(
         (ingredient) => ingredient.name !== 'Bun-top' && ingredient.name !== 'Bun-bottom'
     );
 
+    const updateStats = (ingredient: Ingredient, operation: 'add' | 'remove') => {
+        setTime((prev) => operation === 'add' ? prev + ingredient.time : Math.max(initialIngredient.time, prev - ingredient.time));
+        setWeight((prev) => operation === 'add' ? prev + ingredient.oz : Math.max(initialIngredient.oz, prev - ingredient.oz));
+        setKcal((prev) => operation === 'add' ? prev + ingredient.kcal : Math.max(initialIngredient.kcal, prev - ingredient.kcal));
+        setPrice((prev) => operation === 'add' ? prev + ingredient.price : Math.max(initialIngredient.price, prev - ingredient.price));
+    };
 
     const addIngredient = (ingredient: Ingredient) => {
         setBurger((prevBurger) => [...prevBurger, ingredient]);
+        updateStats(ingredient, 'add');
     };
 
     const removeIngredient = (ingredient: Ingredient) => {
@@ -31,6 +49,8 @@ export const MakeBurgerPage = () => {
             }
             return prevBurger;
         });
+
+        updateStats(ingredient, 'remove');
     };
 
 
@@ -48,14 +68,19 @@ export const MakeBurgerPage = () => {
                                     key={`${ingredient.name}-${index}`}
                                     className={styles.main_burger__scene__element}
                                     src={ingredient.img}
-                                    alt="Bun-bottom"
+                                    alt={`${ingredient.name}`}
                                 />
                             ))}
                         </div>
 
                     </div>
                     <div className={styles.main_summary}>
-                        <Summary />
+                        <Summary
+                            time={time}
+                            weight={weight}
+                            kcal={kcal}
+                            price={price}
+                        />
                     </div>
                 </div>
 

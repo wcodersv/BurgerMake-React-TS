@@ -1,5 +1,5 @@
 // Ingredient.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Ingredient.module.scss';
 import ButtonAddDelete from '../ButtonAddDelete';
 
@@ -12,6 +12,8 @@ interface IngredientProps {
 }
 
 export const Ingredient = ({ name, imgSrc, onAddIngredient, onDeleteIngredient, quantity }: IngredientProps) => {
+  const isDisabled = quantity === 0;
+
   return (
     <div className={styles.container}>
       <div className={styles.container_ingredient}>
@@ -25,9 +27,16 @@ export const Ingredient = ({ name, imgSrc, onAddIngredient, onDeleteIngredient, 
       <p className={styles.container_description}>{name}</p>
 
       <div className={styles.container_actions}>
-        <ButtonAddDelete imgSrc='/assets/svg/icon-minus.svg' onClick={onDeleteIngredient} />
+        <ButtonAddDelete
+          onClick={onDeleteIngredient}
+          content='–'
+          disabled={isDisabled}
+        />
         <span className={styles.container_actions__quantity}>{quantity}</span>
-        <ButtonAddDelete imgSrc='/assets/svg/icon-plus.svg' onClick={onAddIngredient} />
+        <ButtonAddDelete
+          onClick={onAddIngredient}
+          content='+'
+        />
       </div>
     </div>
   );

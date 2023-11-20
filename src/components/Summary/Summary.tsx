@@ -1,14 +1,20 @@
 import React from 'react';
 import styles from './Summary.module.scss';
 
+interface summaryProps {
+    time: number,
+    weight: number,
+    kcal: number,
+    price: number,
+}
 
-export const Summary = () => {
+export const Summary = ({ time, weight, kcal, price }: summaryProps) => {
 
     const detailsFood = [
         {
             'name': 'time',
             'src': '/assets/svg/summary-clock.svg',
-            'content': '1 min',
+            'content': `${time} min`,
             'color': 'var(--clr-heliotrope)',
             'img': {
                 'width': '1rem',
@@ -18,7 +24,7 @@ export const Summary = () => {
         {
             'name': 'weight',
             'src': '/assets/svg/summary-scale.svg',
-            'content': '12 oz',
+            'content': `${weight.toFixed(1)} oz`,
             'color': 'var( --clr-tan-hide)',
             'img': {
                 'width': '1rem',
@@ -28,7 +34,7 @@ export const Summary = () => {
         {
             'name': 'kcal',
             'src': '/assets/svg/summary-fire.svg',
-            'content': '38 kcal',
+            'content': `${kcal} kcal`,
             'color': 'var(--clr-danger)',
             'img': {
                 'width': '1.375rem',
@@ -44,7 +50,7 @@ export const Summary = () => {
 
             <div className={styles.summary_total}>
                 <div className={styles.summary_total_container}>
-                    <p className={styles.summary_total_container__price}>$0.00</p>
+                    <p className={styles.summary_total_container__price}>{`$${price.toFixed(2)}`}</p>
                     <button className={styles.summary_total_container__button}>Checkout</button>
                 </div>
                 <p
