@@ -13,7 +13,10 @@ export const HomePage: React.FC = () => {
 
                 <div className={styles.main_discover}>
                     <BurgerAnimation />
-                    <ButtonMakeBurger />
+                    <div className={styles.main_btn}>
+                        <ButtonMakeBurger />
+                    </div>
+
                 </div>
             </div>
         </main>

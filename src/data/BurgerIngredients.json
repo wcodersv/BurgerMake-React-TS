@@ -6,7 +6,7 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/bun_bottom_show.svg",
-      "width": 6,
+      "width": 20,
       "auto": true
    },
    {
@@ -16,7 +16,7 @@
       "price": 1,
       "time": 3,
       "img": "/assets/burger/bun_top.svg",
-      "width": 0,
+      "width": 20,
       "auto": true
    },
    {
@@ -26,7 +26,8 @@
       "price": 4.3,
       "time": 3,
       "img": "/assets/burger/cutlet.svg",
-      "width": 3
+      "width": 17,
+      "left": 15
    },
    {
       "name": "Mayo",

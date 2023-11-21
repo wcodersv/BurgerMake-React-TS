@@ -1,9 +1,10 @@
 // MakeBurger.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './MakeBurgerPage.module.scss';
 import Summary from '../../components/Summary';
 import Ingredient from '../../components/Ingredient';
 import ingredientsData from '../../data/BurgerIngredients.json';
+import { animated, useSpring, config, useSprings } from 'react-spring';
 
 export const MakeBurgerPage = () => {
     interface Ingredient {
@@ -13,6 +14,8 @@ export const MakeBurgerPage = () => {
         price: number,
         time: number,
         img: string,
+        width?: number,
+        left?: number,
     }
 
     const initialIngredient = ingredientsData[0];
@@ -21,6 +24,8 @@ export const MakeBurgerPage = () => {
     const [weight, setWeight] = useState<number>(initialIngredient.oz);
     const [kcal, setKcal] = useState<number>(initialIngredient.kcal);
     const [price, setPrice] = useState<number>(initialIngredient.price);
+
+    const [showImg, setShowImg] = useState<boolean>(false);
 
 
     const ingredientsDataFilter = ingredientsData.filter(
@@ -34,9 +39,13 @@ export const MakeBurgerPage = () => {
         setPrice((prev) => operation === 'add' ? prev + ingredient.price : Math.max(initialIngredient.price, prev - ingredient.price));
     };
 
+
+
     const addIngredient = (ingredient: Ingredient) => {
         setBurger((prevBurger) => [...prevBurger, ingredient]);
         updateStats(ingredient, 'add');
+
+        setShowImg(true);
     };
 
     const removeIngredient = (ingredient: Ingredient) => {
@@ -54,6 +63,21 @@ export const MakeBurgerPage = () => {
     };
 
 
+    // Применяем анимацию translateY для каждого ингредиента в burger
+    const springs = useSprings(
+        burger.length,
+        burger.map(() => ({
+            from: { translateY: -50 },
+            to: { translateY: showImg ? 0 : -50 },
+            config: config.stiff,
+        }))
+    );
+
+    // Обновляем анимацию при изменении showImg
+    useEffect(() => {
+        setShowImg(true);
+    }, [burger]);
+
     return (
         <main>
             <div className={`${styles.main_container} container`}>
@@ -63,12 +87,27 @@ export const MakeBurgerPage = () => {
 
                     <div className={styles.main_burger}>
                         <div className={styles.main_burger__scene}>
-                            {burger.map((ingredient, index) => (
-                                <img
-                                    key={`${ingredient.name}-${index}`}
+                            {/* {burger.map((ingredient, index) => (
+                                // <animated.img
+                                //     key={`${ingredient.name}-${index}`}
+                                //     className={styles.main_burger__scene__element}
+                                //     src={ingredient.img}
+                                //     alt={`${ingredient.name}`}
+                                // />
+                            ))} */}
+
+                            {springs.map((spring, index) => (
+                                <animated.img
+                                    key={`${burger[index].name}-${index}`}
                                     className={styles.main_burger__scene__element}
-                                    src={ingredient.img}
-                                    alt={`${ingredient.name}`}
+                                    src={burger[index].img}
+                                    alt={`${burger[index].name}`}
+                                    style={{
+                                        width: `${burger[index].width}rem`,
+                                        left: `${burger[index].left}%`,
+                                        zIndex: index,
+                                        ...spring,
+                                    }}
                                 />
                             ))}
                         </div>

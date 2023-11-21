@@ -54,11 +54,10 @@
             &__element {
                 display: block;
                 position: absolute;
-                left: 50%;
+                left: 2rem;
                 bottom: 10%;
-                width: 18rem;
-                transform: translate(-50%, 50%);
-                transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                width: 20rem;
+                // transform: translate(-50%, 50%);
             }
         }
     }
