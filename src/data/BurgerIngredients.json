@@ -6,7 +6,9 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/bun_bottom_show.svg",
-      "width": 20,
+      "height": 8,
+      "width": 90,
+      "left": 5,
       "auto": true
    },
    {
@@ -16,7 +18,9 @@
       "price": 1,
       "time": 3,
       "img": "/assets/burger/bun_top.svg",
-      "width": 20,
+      "height": 0,
+      "width": 75,
+      "left": 13,
       "auto": true
    },
    {
@@ -26,8 +30,9 @@
       "price": 4.3,
       "time": 3,
       "img": "/assets/burger/cutlet.svg",
-      "width": 17,
-      "left": 15
+      "height": 4,
+      "width": 75,
+      "left": 13
    },
    {
       "name": "Mayo",
@@ -36,7 +41,9 @@
       "price": 1.4,
       "time": 1,
       "img": "/assets/burger/mayo.svg",
-      "width": 1
+      "height": 2.5,
+      "width": 75,
+      "left": 13
    },
    {
       "name": "Onion",
@@ -45,8 +52,10 @@
       "price": 1.1,
       "time": 1,
       "img": "/assets/burger/onion.svg",
-      "img_group": "img/data/onion_group.png",
-      "width": 3
+      "img_group": "/assets/burger/onion-group.svg",
+      "height": 2.5,
+      "width": 80,
+      "left": 10
    },
    {
       "name": "Tomato",
@@ -55,8 +64,10 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/tomatoe.svg",
-      "img_group": "img/data/tomato_group.png",
-      "width": 4
+      "img_group": "/assets/burger/tomatoe-group.svg",
+      "height": 3.5,
+      "width": 80,
+      "left": 10
    },
    {
       "name": "Cucumber",
@@ -65,8 +76,10 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/cucumber.svg",
-      "img_group": "img/data/cucumber_group.png",
-      "width": 2.5
+      "img_group": "/assets/burger/cucumber-group.svg",
+      "height": 3,
+      "width": 80,
+      "left": 10
    },
    {
       "name": "Cheese",
@@ -75,7 +88,9 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/cheese.svg",
-      "width": 2.5
+      "height": 3,
+      "width": 80,
+      "left": 10
    },
    {
       "name": "Salad",
@@ -84,7 +99,9 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/salad.svg",
-      "width": 3
+      "height": 4,
+      "width": 80,
+      "left": 10
    },
    {
       "name": "Bun",
@@ -93,6 +110,8 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/bun_middle.svg",
-      "width": 4
+      "height": 4,
+      "width": 75,
+      "left": 13
    }
 ]

@@ -1,15 +1,9 @@
 .main {
-
     &_container {
-        // display: flex;
-        // flex-direction: column;
-        // height: 70vh;
-        // gap: 3rem;
         display: grid;
         grid-template-columns: auto 1fr;
         height: 100%;
         align-items: center;
-        // column-gap: 2.25rem;
         column-gap: 8rem;
         row-gap: 4rem;
         padding-bottom: 1.875rem;
@@ -54,16 +48,14 @@
             &__element {
                 display: block;
                 position: absolute;
-                left: 2rem;
-                bottom: 10%;
-                width: 20rem;
-                // transform: translate(-50%, 50%);
+                width: 90%;
+                transform: translate(-50%, 50%);
             }
         }
     }
 
 
-    &_summary {}
+    // &_summary {}
 
 
     &_ingredients {
@@ -79,5 +71,4 @@
         margin-bottom: 0;
         height: auto;
     }
-
 }
