@@ -1,8 +1,8 @@
 [
    {
       "name": "Bun-bottom",
-      "kcal": 90,
-      "oz": 0.2,
+      "kcal": 150,
+      "oz": 0.4,
       "price": 1,
       "time": 1,
       "img": "/assets/burger/bun_bottom_show.svg",
@@ -12,10 +12,10 @@
    },
    {
       "name": "Bun-top",
-      "kcal": 120,
-      "oz": 0.2,
-      "price": 1,
-      "time": 1,
+      "kcal": 0,
+      "oz": 0,
+      "price": 0,
+      "time": 0,
       "img": "/assets/burger/bun_top.svg",
       "height": 0,
       "width": 75,

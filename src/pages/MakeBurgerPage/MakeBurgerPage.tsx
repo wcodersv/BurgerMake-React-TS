@@ -1,5 +1,5 @@
 // MakeBurger.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './MakeBurgerPage.module.scss';
 import Summary from '../../components/Summary';
 import Ingredient from '../../components/Ingredient';
@@ -7,7 +7,7 @@ import ingredientsData from '../../data/BurgerIngredients.json';
 import { animated, config, useSprings } from 'react-spring';
 
 export const MakeBurgerPage = () => {
-    interface Ingredient {
+    interface BurgerIngredient {
         name: string,
         kcal: number,
         oz: number,
@@ -20,44 +20,56 @@ export const MakeBurgerPage = () => {
         img_group?: string,
     }
 
-    const finishIngredient = ingredientsData[1];
-    const initialIngredient = ingredientsData[0];
-    const [burger, setBurger] = useState<Ingredient[]>([initialIngredient]);
-    const [time, setTime] = useState<number>(initialIngredient.time);
-    const [weight, setWeight] = useState<number>(initialIngredient.oz);
-    const [kcal, setKcal] = useState<number>(initialIngredient.kcal);
-    const [price, setPrice] = useState<number>(initialIngredient.price);
+    // Верхняя булка и нижняя булка
+    const finishIngredientData = ingredientsData[1];
+    const initialIngredientData = ingredientsData[0];
+    const [burgerIngredients, setBurgerIngredients] = useState<BurgerIngredient[]>([initialIngredientData]);
+    const [burgerTime, setBurgerTime] = useState<number>(initialIngredientData.time);
+    const [burgerWeight, setBurgerWeight] = useState<number>(initialIngredientData.oz);
+    const [burgerKcal, setBurgerKcal] = useState<number>(initialIngredientData.kcal);
+    const [burgerPrice, setBurgerPrice] = useState<number>(initialIngredientData.price);
 
-    const [showImg, setShowImg] = useState<boolean>(false);
-    const [bottomIngredient, setBottomIngredient] = useState<number[]>([0, initialIngredient.height]);
+    // Дополнительные состояния для управления анимациями и верхней булкой
+    const [isImageVisible, setIsImageVisible] = useState<boolean>(false);
+    const [bottomIngredientPositions, setBottomIngredientPositions] = useState<number[]>([0, initialIngredientData.height]);
     const [isTopBunAdded, setIsTopBunAdded] = useState<boolean>(false);
-    const [addBurgerInt, setAddBurgerInt] = useState<boolean>(false);
+    const [isAddingBurger, setIsAddingBurger] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (!initialIngredientData || !finishIngredientData) {
+            console.error('Invalid JSON file structure.');
+            alert('Invalid JSON file structure.')
+        }
+    }, [initialIngredientData, finishIngredientData]);
 
 
-    const ingredientsDataFilter = ingredientsData.filter(
-        (ingredient) => ingredient.name !== 'Bun-top' && ingredient.name !== 'Bun-bottom'
-    );
+    const filteredIngredients = useMemo(() => {
+        return ingredientsData.filter(
+            (ingredient) => ingredient.name !== 'Bun-top' && ingredient.name !== 'Bun-bottom'
+        );
+    }, [ingredientsData]);
 
-    const updateStats = (ingredient: Ingredient, operation: 'add' | 'remove') => {
-        setTime((prev) => operation === 'add' ? prev + ingredient.time : Math.max(initialIngredient.time, prev - ingredient.time));
-        setWeight((prev) => operation === 'add' ? prev + ingredient.oz : Math.max(initialIngredient.oz, prev - ingredient.oz));
-        setKcal((prev) => operation === 'add' ? prev + ingredient.kcal : Math.max(initialIngredient.kcal, prev - ingredient.kcal));
-        setPrice((prev) => operation === 'add' ? prev + ingredient.price : Math.max(initialIngredient.price, prev - ingredient.price));
+
+    const updateStats = (ingredient: BurgerIngredient, operation: 'add' | 'remove') => {
+        setBurgerTime((prev) => operation === 'add' ? prev + ingredient.time : Math.max(initialIngredientData.time, prev - ingredient.time));
+        setBurgerWeight((prev) => operation === 'add' ? prev + ingredient.oz : Math.max(initialIngredientData.oz, prev - ingredient.oz));
+        setBurgerKcal((prev) => operation === 'add' ? prev + ingredient.kcal : Math.max(initialIngredientData.kcal, prev - ingredient.kcal));
+        setBurgerPrice((prev) => operation === 'add' ? prev + ingredient.price : Math.max(initialIngredientData.price, prev - ingredient.price));
     };
 
     //Добавление ингредиента на бургер
-    const addIngredient = (ingredient: Ingredient) => {
-        setBurger((prevBurger) => [...prevBurger, ingredient]);
+    const addIngredient = (ingredient: BurgerIngredient) => {
+        setBurgerIngredients((prevBurger) => [...prevBurger, ingredient]);
         updateStats(ingredient, 'add');
-        setBottomIngredient((prev) => [...prev, prev[prev.length - 1] + ingredient.height]);
-        setShowImg(true);
+        setBottomIngredientPositions((prev) => [...prev, prev[prev.length - 1] + ingredient.height]);
+        setIsImageVisible(true);
 
-        setAddBurgerInt(true); 
+        setIsAddingBurger(true);
     };
 
-    //Удаление ингредиента на бургер
-    const removeIngredient = (ingredient: Ingredient) => {
-        setBurger((prevBurger) => {
+    // Удаление ингредиента с бургера
+    const removeIngredient = (ingredient: BurgerIngredient) => {
+        setBurgerIngredients((prevBurger) => {
             const index = prevBurger.findIndex((item) => item === ingredient);
             if (index !== -1) {
                 const updatedBurger = [...prevBurger];
@@ -71,60 +83,57 @@ export const MakeBurgerPage = () => {
     };
 
 
-    //! Добавление верхней булки
-    const addTopBun = () => {
+    // Добавление верхней булки
+    const addTopBunIfNotAdded = () => {
         if (!isTopBunAdded) {
-            setBurger((prevBurger) => [...prevBurger, finishIngredient]);
-            setBottomIngredient((prev) => [...prev, prev[prev.length - 1] + finishIngredient.height]);
+            setBurgerIngredients((prevBurger) => [...prevBurger, finishIngredientData]);
+            setBottomIngredientPositions((prev) => [...prev, prev[prev.length - 1] + finishIngredientData.height]);
             setIsTopBunAdded(true);
-   
         }
     };
 
-    //! Удаление верхней булки
-    const removeTopBun = () => {
-        setBurger((prevBurger) => prevBurger.filter(item => item !== finishIngredient));
 
+    // Удаление верхней булки
+    const removeTopBunIfExists = () => {
+        setBurgerIngredients((prevBurger) => prevBurger.filter(item => item !== finishIngredientData));
     };
 
-    //! Эффект для обработки изменений в burger
+    // Эффект для обработки изменений в burger
     useEffect(() => {
-        if (burger.length > 1) {
+        if (burgerIngredients.length > 1) {
             const timeoutId = setTimeout(() => {
                 if (!isTopBunAdded) {
-                    addTopBun();
+                    addTopBunIfNotAdded();
                     setIsTopBunAdded(true);
                 }
-            }, 3000);
+            }, 5000);
 
-            removeTopBun();
+            removeTopBunIfExists();
             setIsTopBunAdded(false);
-            setAddBurgerInt(false); //!
+            setIsAddingBurger(false);
 
             return () => {
                 clearTimeout(timeoutId);
             };
         }
 
-    }, [addBurgerInt]);
+    }, [isAddingBurger]);
 
 
-
-
-    // Применяем анимацию translateY для каждого ингредиента в burger
-    const springs = useSprings(
-        burger.length,
-        burger.map(() => ({
+    // Анимация translateY для каждого ингредиента в burger при появление ингредиентов
+    const ingredientSprings = useSprings(
+        burgerIngredients.length,
+        burgerIngredients.map(() => ({
             from: { translateY: -50 },
-            to: { translateY: showImg ? 0 : -50 },
+            to: { translateY: isImageVisible ? 0 : -50 },
             config: config.stiff,
         }))
     );
 
-    //Обновляем анимацию при изменении showImg
+    // Обновление анимации при изменении isImageVisible
     useEffect(() => {
-        setShowImg(true);
-    }, [burger]);
+        setIsImageVisible(true);
+    }, [burgerIngredients]);
 
 
     return (
@@ -135,16 +144,16 @@ export const MakeBurgerPage = () => {
 
                     <div className={styles.main_burger}>
                         <div className={styles.main_burger__scene}>
-                            {springs.map((spring, index) => (
+                            {ingredientSprings.map((spring, index) => (
                                 <animated.img
-                                    key={`${burger[index].name}-${index}`}
+                                    key={`${burgerIngredients[index].name}-${index}`}
                                     className={styles.main_burger__scene__element}
-                                    src={burger[index].img_group || burger[index].img}
-                                    alt={`${burger[index].name}`}
+                                    src={burgerIngredients[index].img_group || burgerIngredients[index].img}
+                                    alt={`${burgerIngredients[index].name}`}
                                     style={{
-                                        bottom: `${bottomIngredient[index]}%`,
-                                        width: `${burger[index].width}%`,
-                                        left: `${burger[index].left}%`,
+                                        bottom: `${bottomIngredientPositions[index]}%`,
+                                        width: `${burgerIngredients[index].width}%`,
+                                        left: `${burgerIngredients[index].left}%`,
                                         zIndex: index,
                                         ...spring,
                                     }}
@@ -155,23 +164,23 @@ export const MakeBurgerPage = () => {
                     </div>
                     <div className={styles.main_summary}>
                         <Summary
-                            time={time}
-                            weight={weight}
-                            kcal={kcal}
-                            price={price}
+                            time={burgerTime}
+                            weight={burgerWeight}
+                            kcal={burgerKcal}
+                            price={burgerPrice}
                         />
                     </div>
                 </div>
 
                 <div className={styles.main_ingredients}>
-                    {ingredientsDataFilter.map((ingredient, index) => (
+                    {filteredIngredients.map((ingredient, index) => (
                         <Ingredient
                             key={`${ingredient.name}-${index}`}
                             name={ingredient.name}
                             imgSrc={ingredient.img}
                             onAddIngredient={() => addIngredient(ingredient)}
                             onDeleteIngredient={() => removeIngredient(ingredient)}
-                            quantity={burger.filter((item) => item === ingredient).length}
+                            quantity={burgerIngredients.filter((item) => item === ingredient).length}
                         />
                     ))}
                 </div>
