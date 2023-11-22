@@ -30,6 +30,8 @@ export const MakeBurgerPage = () => {
 
     const [showImg, setShowImg] = useState<boolean>(false);
     const [bottomIngredient, setBottomIngredient] = useState<number[]>([0, initialIngredient.height]);
+    const [isTopBunAdded, setIsTopBunAdded] = useState<boolean>(false);
+    const [addBurgerInt, setAddBurgerInt] = useState<boolean>(false);
 
 
     const ingredientsDataFilter = ingredientsData.filter(
@@ -43,16 +45,17 @@ export const MakeBurgerPage = () => {
         setPrice((prev) => operation === 'add' ? prev + ingredient.price : Math.max(initialIngredient.price, prev - ingredient.price));
     };
 
+    //Добавление ингредиента на бургер
     const addIngredient = (ingredient: Ingredient) => {
         setBurger((prevBurger) => [...prevBurger, ingredient]);
         updateStats(ingredient, 'add');
-
         setBottomIngredient((prev) => [...prev, prev[prev.length - 1] + ingredient.height]);
-        console.log('accumulatedHeight ', bottomIngredient, ingredient.name);
-
         setShowImg(true);
+
+        setAddBurgerInt(true); 
     };
 
+    //Удаление ингредиента на бургер
     const removeIngredient = (ingredient: Ingredient) => {
         setBurger((prevBurger) => {
             const index = prevBurger.findIndex((item) => item === ingredient);
@@ -67,6 +70,47 @@ export const MakeBurgerPage = () => {
         updateStats(ingredient, 'remove');
     };
 
+
+    //! Добавление верхней булки
+    const addTopBun = () => {
+        if (!isTopBunAdded) {
+            setBurger((prevBurger) => [...prevBurger, finishIngredient]);
+            setBottomIngredient((prev) => [...prev, prev[prev.length - 1] + finishIngredient.height]);
+            setIsTopBunAdded(true);
+   
+        }
+    };
+
+    //! Удаление верхней булки
+    const removeTopBun = () => {
+        setBurger((prevBurger) => prevBurger.filter(item => item !== finishIngredient));
+
+    };
+
+    //! Эффект для обработки изменений в burger
+    useEffect(() => {
+        if (burger.length > 1) {
+            const timeoutId = setTimeout(() => {
+                if (!isTopBunAdded) {
+                    addTopBun();
+                    setIsTopBunAdded(true);
+                }
+            }, 3000);
+
+            removeTopBun();
+            setIsTopBunAdded(false);
+            setAddBurgerInt(false); //!
+
+            return () => {
+                clearTimeout(timeoutId);
+            };
+        }
+
+    }, [addBurgerInt]);
+
+
+
+
     // Применяем анимацию translateY для каждого ингредиента в burger
     const springs = useSprings(
         burger.length,
@@ -77,7 +121,7 @@ export const MakeBurgerPage = () => {
         }))
     );
 
-    // Обновляем анимацию при изменении showImg
+    //Обновляем анимацию при изменении showImg
     useEffect(() => {
         setShowImg(true);
     }, [burger]);

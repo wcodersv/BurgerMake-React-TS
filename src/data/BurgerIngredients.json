@@ -8,20 +8,18 @@
       "img": "/assets/burger/bun_bottom_show.svg",
       "height": 8,
       "width": 90,
-      "left": 5,
-      "auto": true
+      "left": 5
    },
    {
       "name": "Bun-top",
       "kcal": 120,
       "oz": 0.2,
       "price": 1,
-      "time": 3,
+      "time": 1,
       "img": "/assets/burger/bun_top.svg",
       "height": 0,
       "width": 75,
-      "left": 13,
-      "auto": true
+      "left": 13
    },
    {
       "name": "Cutlet",
