@@ -52,10 +52,35 @@
                 transform: translate(-50%, 50%);
             }
         }
+
+        &_ketchup {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 5rem;
+        }
     }
 
 
-    // &_summary {}
+    &_summary {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        color: var(--clr-black);
+        font-size: var(--fs-18);
+        font-style: normal;
+        font-weight: var(--fw-semi-bold);
+        line-height: 2rem;
+
+        span {
+            color: var(--clr-danger);
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
 
     &_ingredients {

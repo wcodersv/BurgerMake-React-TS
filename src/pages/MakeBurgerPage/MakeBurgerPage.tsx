@@ -4,7 +4,7 @@ import styles from './MakeBurgerPage.module.scss';
 import Summary from '../../components/Summary';
 import Ingredient from '../../components/Ingredient';
 import ingredientsData from '../../data/BurgerIngredients.json';
-import { animated, config, useSprings } from 'react-spring';
+import { animated, config, useSpring, useSprings } from 'react-spring';
 
 export const MakeBurgerPage = () => {
     interface BurgerIngredient {
@@ -29,8 +29,11 @@ export const MakeBurgerPage = () => {
     const [burgerKcal, setBurgerKcal] = useState<number>(initialIngredientData.kcal);
     const [burgerPrice, setBurgerPrice] = useState<number>(initialIngredientData.price);
 
+    const [tomatoKetchup, setTomatoKetchup] = useState<boolean>(false); //!
+
+
     // Дополнительные состояния для управления анимациями и верхней булкой
-    const [isImageVisible, setIsImageVisible] = useState<boolean>(false);
+    const [isImageVisible, setIsImageVisible] = useState<boolean>(false);// анимация при добавление ингредиентов
     const [bottomIngredientPositions, setBottomIngredientPositions] = useState<number[]>([0, initialIngredientData.height]);
     const [isTopBunAdded, setIsTopBunAdded] = useState<boolean>(false);
     const [isAddingBurger, setIsAddingBurger] = useState<boolean>(false);
@@ -120,6 +123,20 @@ export const MakeBurgerPage = () => {
     }, [isAddingBurger]);
 
 
+    // Обновление анимации при изменении isImageVisible
+    useEffect(() => {
+        setIsImageVisible(true);
+    }, [burgerIngredients]);
+
+    // Добавить или удалить вес кетчупа
+    useEffect(() => {
+        if (tomatoKetchup) {
+            setBurgerWeight((prev) => prev + 1.2);
+        } else {
+            setBurgerWeight((prev) => Math.max(initialIngredientData.oz, prev - 1.2));
+        }
+    }, [tomatoKetchup]);
+
     // Анимация translateY для каждого ингредиента в burger при появление ингредиентов
     const ingredientSprings = useSprings(
         burgerIngredients.length,
@@ -130,11 +147,18 @@ export const MakeBurgerPage = () => {
         }))
     );
 
-    // Обновление анимации при изменении isImageVisible
-    useEffect(() => {
-        setIsImageVisible(true);
-    }, [burgerIngredients]);
+    //Анимация появления и исчезнования кетчупа
+    const ketchupShowSpring = useSpring({
+        reset: tomatoKetchup,
+        right: tomatoKetchup ? '2rem' : '0',
+        opacity: tomatoKetchup ? 1 : 0,
+        config: { duration: 300 },
+    });
 
+
+    const handleTomatoKetchupClick = () => {
+        setTomatoKetchup(!tomatoKetchup);
+    };
 
     return (
         <main>
@@ -159,6 +183,13 @@ export const MakeBurgerPage = () => {
                                     }}
                                 />
                             ))}
+
+                            <animated.img
+                                src='/assets/burger/ketchup1.webp'
+                                alt=' '
+                                className={styles.main_burger_ketchup}
+                                style={ketchupShowSpring}
+                            />
                         </div>
 
                     </div>
@@ -169,6 +200,10 @@ export const MakeBurgerPage = () => {
                             kcal={burgerKcal}
                             price={burgerPrice}
                         />
+
+                        <p onClick={handleTomatoKetchupClick}>
+                            <span>{`${tomatoKetchup ? '–' : '+'} Tomato Ketchup`}</span> 1.2 oz
+                        </p>
                     </div>
                 </div>
 
