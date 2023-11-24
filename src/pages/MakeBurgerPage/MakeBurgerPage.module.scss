@@ -1,4 +1,6 @@
 .main {
+    position: relative;
+
     &_container {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -95,5 +97,12 @@
         padding-bottom: 0;
         margin-bottom: 0;
         height: auto;
+    }
+
+    &_question {
+        position: absolute;
+        top: 10%;
+        left: 45%;
+        z-index: 151;
     }
 }

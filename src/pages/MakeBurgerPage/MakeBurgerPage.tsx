@@ -5,6 +5,7 @@ import Summary from '../../components/Summary';
 import Ingredient from '../../components/Ingredient';
 import ingredientsData from '../../data/BurgerIngredients.json';
 import { animated, config, useSpring, useSprings } from 'react-spring';
+import PlaceholderQuestion from '../../components/PlaceholderQuestion';
 
 export const MakeBurgerPage = () => {
     interface BurgerIngredient {
@@ -155,13 +156,18 @@ export const MakeBurgerPage = () => {
         config: { duration: 300 },
     });
 
+    const placeholderQuestionShowSpring = useSpring({
+        opacity: burgerKcal > 1500 ? 1 : 0,
+        config: { duration: 300 },
+    })
+
 
     const handleTomatoKetchupClick = () => {
         setTomatoKetchup(!tomatoKetchup);
     };
 
     return (
-        <main>
+        <main className={styles.main}>
             <div className={`${styles.main_container} container`}>
                 <h1 className={styles.main_header}>Make <br /> Your <br /> Burger </h1>
                 <div className={styles.main_grid}>
@@ -219,6 +225,12 @@ export const MakeBurgerPage = () => {
                         />
                     ))}
                 </div>
+
+                <animated.div
+                    className={styles.main_question}
+                    style={placeholderQuestionShowSpring}>
+                    <PlaceholderQuestion />
+                </animated.div>
             </div>
         </main>
     )
