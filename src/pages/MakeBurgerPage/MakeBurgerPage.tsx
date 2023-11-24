@@ -101,7 +101,7 @@ export const MakeBurgerPage = () => {
         setBurgerIngredients((prevBurger) => prevBurger.filter(item => item !== finishIngredientData));
     };
 
-    // Эффект для обработки изменений в burger
+    // Обработка изменений в burger
     useEffect(() => {
         if (burgerIngredients.length > 1) {
             const timeoutId = setTimeout(() => {
@@ -122,12 +122,6 @@ export const MakeBurgerPage = () => {
 
     }, [isAddingBurger]);
 
-
-    // Обновление анимации при изменении isImageVisible
-    useEffect(() => {
-        setIsImageVisible(true);
-    }, [burgerIngredients]);
-
     // Добавить или удалить вес кетчупа
     useEffect(() => {
         if (tomatoKetchup) {
@@ -136,6 +130,12 @@ export const MakeBurgerPage = () => {
             setBurgerWeight((prev) => Math.max(initialIngredientData.oz, prev - 1.2));
         }
     }, [tomatoKetchup]);
+
+
+    // Обновление анимации при изменении isImageVisible
+    useEffect(() => {
+        setIsImageVisible(true);
+    }, [burgerIngredients]);
 
     // Анимация translateY для каждого ингредиента в burger при появление ингредиентов
     const ingredientSprings = useSprings(
