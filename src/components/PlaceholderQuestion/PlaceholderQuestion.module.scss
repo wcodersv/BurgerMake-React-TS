@@ -33,6 +33,6 @@
         border-left: 0.6rem solid transparent;
         border-right: 0.6rem solid transparent;
         border-bottom: 0.6rem solid var(--clr-white);
-        z-index: 100;
+        z-index: var(--z-index-placeholdar-question-befor);
     }
 }

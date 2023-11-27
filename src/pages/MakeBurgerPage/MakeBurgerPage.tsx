@@ -6,6 +6,7 @@ import Ingredient from '../../components/Ingredient';
 import ingredientsData from '../../data/BurgerIngredients.json';
 import { animated, config, useSpring, useSprings } from 'react-spring';
 import PlaceholderQuestion from '../../components/PlaceholderQuestion';
+import ModalCheckout from '../../components/ModalCheckout';
 
 export const MakeBurgerPage = () => {
     interface BurgerIngredient {
@@ -30,14 +31,14 @@ export const MakeBurgerPage = () => {
     const [burgerKcal, setBurgerKcal] = useState<number>(initialIngredientData.kcal);
     const [burgerPrice, setBurgerPrice] = useState<number>(initialIngredientData.price);
 
-    const [tomatoKetchup, setTomatoKetchup] = useState<boolean>(false); //!
-
-
     // Дополнительные состояния для управления анимациями и верхней булкой
     const [isImageVisible, setIsImageVisible] = useState<boolean>(false);// анимация при добавление ингредиентов
     const [bottomIngredientPositions, setBottomIngredientPositions] = useState<number[]>([0, initialIngredientData.height]);
     const [isTopBunAdded, setIsTopBunAdded] = useState<boolean>(false);
     const [isAddingBurger, setIsAddingBurger] = useState<boolean>(false);
+
+    const [tomatoKetchup, setTomatoKetchup] = useState<boolean>(false);
+    const [isCheckoutModalOpen, setCheckoutModalOpen] = useState<boolean>(false);
 
     useEffect(() => {
         if (!initialIngredientData || !finishIngredientData) {
@@ -166,6 +167,11 @@ export const MakeBurgerPage = () => {
         setTomatoKetchup(!tomatoKetchup);
     };
 
+
+    const toggleModal = () => {
+        setCheckoutModalOpen(!isCheckoutModalOpen);
+    };
+
     return (
         <main className={styles.main}>
             <div className={`${styles.main_container} container`}>
@@ -205,6 +211,7 @@ export const MakeBurgerPage = () => {
                             weight={burgerWeight}
                             kcal={burgerKcal}
                             price={burgerPrice}
+                            toggleModal={toggleModal}
                         />
 
                         <p onClick={handleTomatoKetchupClick}>
@@ -232,6 +239,7 @@ export const MakeBurgerPage = () => {
                     <PlaceholderQuestion />
                 </animated.div>
             </div>
+            {isCheckoutModalOpen ? <ModalCheckout toggleModal={toggleModal}/> : ''}
         </main>
     )
 }

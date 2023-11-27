@@ -28,31 +28,6 @@
                 font-weight: var(--fw-extra-bold);
                 line-height: normal;
             }
-
-            &__button {
-                display: flex;
-                width: 12rem;
-                justify-content: center;
-                align-items: center;
-                border-radius: 6.1875rem;
-                background: var(--clr-primary);
-                border: none;
-
-                padding: 1rem;
-                justify-content: center;
-                align-items: center;
-                gap: 0.25rem;
-
-                // text
-                color: var(--clr-titan-white);
-                font-size: var(--fs-16);
-                font-weight: var(--fw-semi-bold);
-                line-height: 1.25rem;
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
         }
 
 

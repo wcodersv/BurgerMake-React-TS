@@ -1,5 +1,5 @@
 .main {
-    position: relative;
+    // position: relative;
 
     &_container {
         display: grid;
@@ -101,8 +101,8 @@
 
     &_question {
         position: absolute;
-        top: 10%;
+        top: 25%;
         left: 45%;
-        z-index: 151;
+        z-index: var(--z-index-placeholdar-question);
     }
 }

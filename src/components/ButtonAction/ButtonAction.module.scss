@@ -1,0 +1,21 @@
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.1875rem;
+    border: none;
+
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+
+    // text
+    font-size: var(--fs-16);
+    font-weight: var(--fw-semi-bold);
+    line-height: 1.25rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
