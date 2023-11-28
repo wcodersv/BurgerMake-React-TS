@@ -9,7 +9,12 @@ interface ModalCheckoutProps {
 }
 
 export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
+    // Состояние для ошибок формы
     const [formErrors, setFormErrors] = useState<string[]>([]);
+    // Состояние для значений полей ввода
+    const [inputValues, setInputValues] = useState<{ [key: string]: string }>({});
+
+
 
     const inputList = [
         {
@@ -41,31 +46,36 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
         },
     ];
 
+    // Обработчик изменения значений в полях ввода
+    const handleChange = (inputId: string, value: string) => {
+        setInputValues((prevValues) => ({ ...prevValues, [inputId]: value }));
+    };
 
-    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    //     event.preventDefault();
-    // };
-
+    // Обработчик отправки формы
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // Validate the form and set errors
+        // Валидация формы и установка ошибок
         const errors: string[] = [];
         inputList.forEach((info) => {
-            if (info.requiredInput && !info.value) {
-                errors.push(`Please fill in the ${info.name}`);
+            if (info.requiredInput && !inputValues[info.inputId]) {
+                errors.push(`Пожалуйста, заполните поле "${info.name}"`);
             }
         });
 
         setFormErrors(errors);
 
-        // If there are no errors, you can proceed with the checkout logic
+        console.log(formErrors)
+        console.log(inputValues)
+
+        // Если ошибок нет, можно продолжить с логикой оформления заказа
         if (errors.length === 0) {
-            // Add your logic for handling the checkout here
-            toggleModal(); // For example, close the modal after successful checkout
+            // Добавьте свою логику обработки заказа здесь
+            console.log('sucses')
+            toggleModal(); // Например, закрытие модального окна после успешного оформления заказа
         }
     };
-    
+
 
     return (
         <div className={styles.modal}>
@@ -92,30 +102,33 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                                 inputId={info.inputId}
                                 imgError={info.imgError}
                                 requiredInput={info.requiredInput}
-                                handleChange={handleChange}
+                                handleChange={(value) => handleChange(info.inputId, value)}
+                                value={inputValues[info.inputId] || ''}
                             />
                         ))
                         }
                     </div>
+
+                    
+                    <div className={styles.modal_footer}>
+                        <ButtonAction
+                            text='Cancel'
+                            backgroundColorBtn='var(--clr-titan-white)'
+                            colorText='var(--clr-primary)'
+                            widthBtn='7.5rem'
+                            handle={toggleModal}
+                        />
+
+                        <ButtonAction
+                            text='Checkout'
+                            backgroundColorBtn='var(--clr-primary)'
+                            colorText='var(--clr-titan-white)'
+                            widthBtn='7.5rem'
+                            typeBtn='submit'
+                            handle={() => handleSubmit}
+                        />
+                    </div>
                 </form>
-
-                <div className={styles.modal_footer}>
-                    <ButtonAction
-                        text='Cancel'
-                        backgroundColorBtn='var(--clr-titan-white)'
-                        colorText='var(--clr-primary)'
-                        widthBtn='7.5rem'
-                        handle={toggleModal}
-                    />
-
-                    <ButtonAction
-                        text='Checkout'
-                        backgroundColorBtn='var(--clr-primary)'
-                        colorText='var(--clr-titan-white)'
-                        widthBtn='7.5rem'
-                        handle={handleSubmit}
-                    />
-                </div>
             </div>
         </div>
     )

@@ -13,50 +13,70 @@ interface InputFormProps {
     patternTel?: string;
     options?: string[];
     requiredInput?: boolean;
+    handleChange: (value: string) => void;
+    value: string;
 }
 
-export const InputForm = ({ name, type, imgActive, imgDefault, imgError, patternTel, requiredInput, inputId, options }: InputFormProps) => {
+export const InputForm = ({
+    name,
+    type,
+    imgActive,
+    imgDefault,
+    imgError,
+    patternTel,
+    requiredInput,
+    inputId,
+    options,
+    handleChange,
+    value,
+}: InputFormProps) => {
     const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
-    const [fieldValue, setFieldValue] = useState('');
     const [error, setError] = useState<boolean>(false);
 
-
+    // Обработчик фокуса на поле ввода
     const handleFocus = () => {
         setIsInputFocused(true);
 
         if (type === 'tel') {
-            setFieldValue('+7');
+            // Устанавливаем начальное значение для номера телефона
+            handleChange('+7');
         }
     };
 
+    // Обработчик потери фокуса полем ввода
     const handleBlur = () => {
         setIsInputFocused(false);
-        setFieldValue(fieldValue.trim());
-        validateInput(); //!
-    };
-
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFieldValue(event.target.value);
+        handleChange(value.trim());
         validateInput();
     };
 
-    const validateInput = () => {
-        setError(name !== 'Time to Delivery' && fieldValue.trim() === '');
+    // Обработчик изменения значения в поле ввода
+    const handleChangeInternal = (event: React.ChangeEvent<HTMLInputElement>) => {
+        handleChange(event.target.value);
+        validateInput();
     };
 
+    // Валидация ввода
+    const validateInput = () => {
+        setError(name !== 'Time to Delivery' && value.trim() === '');
+    };
 
-
+    // Анимация для метки над полем ввода
     const labelSpring = useSpring({
-        top: isInputFocused || fieldValue ? '10%' : '30%',
+        top: isInputFocused || value ? '10%' : '30%',
         config: { duration: 100 },
-    })
+    });
+
+
 
     return (
-        <div className={`${styles.input_wrapper} ${isInputFocused || fieldValue ? styles.input_wrapper__focused : ''}`} style={{ borderColor: error && requiredInput ? 'var(--clr-danger)' : '' }}>
+        <div
+            className={`${styles.input_wrapper} ${isInputFocused || value ? styles.input_wrapper__focused : ''}`}
+            style={{ borderColor: error && requiredInput ? 'var(--clr-danger)' : '' }}
+        >
             {name !== 'Time to Delivery' && (
                 <img
-                    src={`${isInputFocused || fieldValue ? imgActive : error && requiredInput ? imgError : imgDefault}`}
+                    src={`${isInputFocused || value ? imgActive : error && requiredInput ? imgError : imgDefault}`}
                     alt=""
                     className={styles.input_icon}
                 />
@@ -65,16 +85,17 @@ export const InputForm = ({ name, type, imgActive, imgDefault, imgError, pattern
             <input
                 type={type}
                 id={inputId}
-                className={`${styles.input_field} ${isInputFocused || fieldValue ? styles.input_field__focused : ''}`}
+                className={`${styles.input_field} ${isInputFocused || value ? styles.input_field__focused : ''}`}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                onChange={handleChange}
-                value={fieldValue}
+                onChange={handleChangeInternal}
+                value={value}
                 pattern={patternTel}
+                required={requiredInput ? true : false}
             />
 
             <animated.label
-                className={`${styles.input_label} ${isInputFocused || fieldValue ? styles.input_label__focused : ''}`}
+                className={`${styles.input_label} ${isInputFocused || value ? styles.input_label__focused : ''}`}
                 style={{
                     ...labelSpring,
                     color: error && requiredInput ? 'var(--clr-danger)' : '',
@@ -84,8 +105,8 @@ export const InputForm = ({ name, type, imgActive, imgDefault, imgError, pattern
                 {name}
             </animated.label>
 
-            {error && requiredInput && <p className={styles.input_error}>Required field</p>}
 
+            {error && requiredInput && <p className={styles.input_error}>Required field</p>}
         </div>
     );
 };
