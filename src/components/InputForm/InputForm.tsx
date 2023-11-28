@@ -1,18 +1,25 @@
+// InputForm.tsx
 import React, { useState } from 'react';
 import styles from './InputForm.module.scss';
+import { animated, useSpring } from 'react-spring';
 
 interface InputFormProps {
     name: string;
     type: string;
+    inputId: string;
     imgActive?: string;
     imgDefault?: string;
+    imgError?: string;
     patternTel?: string;
     options?: string[];
+    requiredInput?: boolean;
 }
 
-export const InputForm = ({ name, type, imgActive, imgDefault, patternTel, options }: InputFormProps) => {
-    const [isInputFocused, setIsInputFocused] = useState(false);
+export const InputForm = ({ name, type, imgActive, imgDefault, imgError, patternTel, requiredInput, inputId, options }: InputFormProps) => {
+    const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
     const [fieldValue, setFieldValue] = useState('');
+    const [error, setError] = useState<boolean>(false);
+
 
     const handleFocus = () => {
         setIsInputFocused(true);
@@ -24,18 +31,32 @@ export const InputForm = ({ name, type, imgActive, imgDefault, patternTel, optio
 
     const handleBlur = () => {
         setIsInputFocused(false);
-        setFieldValue('');
+        setFieldValue(fieldValue.trim());
+        validateInput(); //!
     };
+
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFieldValue(event.target.value);
+        validateInput();
     };
 
+    const validateInput = () => {
+        setError(name !== 'Time to Delivery' && fieldValue.trim() === '');
+    };
+
+
+
+    const labelSpring = useSpring({
+        top: isInputFocused || fieldValue ? '10%' : '30%',
+        config: { duration: 100 },
+    })
+
     return (
-        <div className={`${styles.input_wrapper} ${isInputFocused ? styles.input_focused : ''}`}>
+        <div className={`${styles.input_wrapper} ${isInputFocused || fieldValue ? styles.input_wrapper__focused : ''}`} style={{ borderColor: error && requiredInput ? 'var(--clr-danger)' : '' }}>
             {name !== 'Time to Delivery' && (
                 <img
-                    src={`${isInputFocused ? imgActive : imgDefault}`}
+                    src={`${isInputFocused || fieldValue ? imgActive : error && requiredInput ? imgError : imgDefault}`}
                     alt=""
                     className={styles.input_icon}
                 />
@@ -43,32 +64,27 @@ export const InputForm = ({ name, type, imgActive, imgDefault, patternTel, optio
 
             <input
                 type={type}
-                className={styles.input_field}
-                placeholder={name}
+                id={inputId}
+                className={`${styles.input_field} ${isInputFocused || fieldValue ? styles.input_field__focused : ''}`}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={fieldValue}
                 pattern={patternTel}
-                list={name === 'Time to Delivery' ? 'deliveryTimes' : undefined}
             />
 
-            {name === 'Time to Delivery' && (
-                <img
-                    src={`${isInputFocused ? imgActive : imgDefault}`}
-                    alt=""
-                    className={styles.input_icon}
-                />
-            )}
+            <animated.label
+                className={`${styles.input_label} ${isInputFocused || fieldValue ? styles.input_label__focused : ''}`}
+                style={{
+                    ...labelSpring,
+                    color: error && requiredInput ? 'var(--clr-danger)' : '',
+                }}
+                htmlFor={inputId}
+            >
+                {name}
+            </animated.label>
 
-            {name === 'Time to Delivery' && options && (
-                <datalist id="deliveryTimes">
-                    {options.map((time, index) => (
-                        <option key={index} value={time}></option>
-                    ))}
-                </datalist>
-            )}
-
+            {error && requiredInput && <p className={styles.input_error}>Required field</p>}
 
         </div>
     );

@@ -9,53 +9,63 @@ interface ModalCheckoutProps {
 }
 
 export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
+    const [formErrors, setFormErrors] = useState<string[]>([]);
 
     const inputList = [
         {
             name: 'Your Name',
             type: 'text',
+            inputId: 'nameInput',
             imgActive: '/assets/svg/form-icon-smile-active.svg',
             imgDefault: '/assets/svg/form-icon-smile-disabled.svg',
+            imgError: '/assets/svg/form-icon-smile-error.svg',
+            requiredInput: false,
         },
         {
             name: 'Phone Number',
             type: 'tel',
+            inputId: 'phoneNumberInput',
             imgActive: '/assets/svg/form-icon-phone-active.svg',
             imgDefault: '/assets/svg/form-icon-phone-disabled.svg',
-            patternTel: '^\\+?[0-9\\s]*$',
+            imgError: '/assets/svg/form-icon-phone-error.svg',
+            requiredInput: true,
         },
         {
             name: 'Shipping Address',
             type: 'address',
+            inputId: 'shippingAddressInput',
             imgActive: '/assets/svg/form-icon-address-active.svg',
             imgDefault: '/assets/svg/form-icon-address-disabled.svg',
+            imgError: '/assets/svg/form-icon-address-error.svg',
+            requiredInput: true,
         },
-        {
-            name: 'Time to Delivery',
-            type: 'text',
-            imgActive: '/assets/svg/form-icon-arrow-active.svg',
-            imgDefault: '/assets/svg/form-icon-arrow-disabled.svg',
-
-            options: [
-                '10:00 AM',
-                '11:00 AM',
-                '12:00 PM',
-                '1:00 PM',
-                '2:00 PM',
-                '3:00 PM',
-                '4:00 PM',
-                '5:00 PM',
-                '6:00 PM',
-            ],
-        },
-    ]
+    ];
 
 
+    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    // };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Добавьте логику обработки формы здесь
+
+        // Validate the form and set errors
+        const errors: string[] = [];
+        inputList.forEach((info) => {
+            if (info.requiredInput && !info.value) {
+                errors.push(`Please fill in the ${info.name}`);
+            }
+        });
+
+        setFormErrors(errors);
+
+        // If there are no errors, you can proceed with the checkout logic
+        if (errors.length === 0) {
+            // Add your logic for handling the checkout here
+            toggleModal(); // For example, close the modal after successful checkout
+        }
     };
+    
 
     return (
         <div className={styles.modal}>
@@ -70,7 +80,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                         onClick={toggleModal} />
                 </div>
 
-                <form action="" className={styles.modal_form} onSubmit={handleSubmit}>
+                <form action="submit" className={styles.modal_form} onSubmit={handleSubmit}>
                     <div className={styles.modal_form_main}>
                         {inputList.map((info, index) => (
                             <InputForm
@@ -79,8 +89,10 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                                 type={info.type}
                                 imgActive={info.imgActive}
                                 imgDefault={info.imgDefault}
-                                patternTel={info.patternTel}
-                                options={info.options}
+                                inputId={info.inputId}
+                                imgError={info.imgError}
+                                requiredInput={info.requiredInput}
+                                handleChange={handleChange}
                             />
                         ))
                         }
@@ -101,7 +113,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                         backgroundColorBtn='var(--clr-primary)'
                         colorText='var(--clr-titan-white)'
                         widthBtn='7.5rem'
-                        handle={toggleModal}
+                        handle={handleSubmit}
                     />
                 </div>
             </div>

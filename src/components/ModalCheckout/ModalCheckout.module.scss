@@ -62,36 +62,11 @@
         &_main {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            padding: 1rem;
+            padding: 1.5rem 1rem;
             gap: 1rem;
         }
 
-        // &__input {
-        //     display: flex;
-        //     padding: 1rem;
-        //     align-items: flex-start;
-        //     gap: 0.5rem;
-        //     align-self: stretch;
-        //     border-radius: 1rem;
-        //     border: 0.0625rem solid var(--clr-titan-white);
-        //     background: var(--clr-white, #FFF);
 
-        //     // text
-        //     color: var(--clr-black);
-        //     font-size: var(--fs-14);
-        //     font-style: normal;
-        //     font-weight: var(--fw-semi-bold);
-        //     line-height: 1.25rem;
-
-        //     &::placeholder {
-        //         color: var(--clr-muted);
-        //         font-size: var(--fs-14);
-        //         font-style: normal;
-        //         font-weight: var(--fw-light);
-        //         line-height: normal;
-
-        //     }
-        // }
     }
 
 
