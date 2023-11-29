@@ -1,0 +1,34 @@
+.modal {
+    &_form {
+        width: 100%;
+        
+        &_main {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 1.5rem 1rem;
+            gap: 1rem;
+        }
+    }
+
+    &_footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        width: 100%;
+        border-top: 0.0625rem solid var(--clr-titan-white);
+        padding: 1rem;
+    }
+
+
+    &_error {
+        position: absolute;
+        bottom: calc(-1*1rem);
+        left: 1.35rem;
+        font-size: var(--fs-12);
+        color: var(--clr-danger);
+    }
+}
+
+.example{
+    position: relative;
+}

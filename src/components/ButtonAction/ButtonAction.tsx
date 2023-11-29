@@ -11,15 +11,17 @@ interface ButtonActionProps {
     widthBtn?: string,
     handle: () => void,
     typeBtn?: ButtonType;
+    disabled?: boolean;
 }
 
-export const ButtonAction = ({ text, backgroundColorBtn, colorText, widthBtn, handle, typeBtn = "button" }: ButtonActionProps) => {
+export const ButtonAction = ({ text, backgroundColorBtn, colorText, widthBtn, handle, typeBtn = "button", disabled }: ButtonActionProps) => {
     return (
         <button
             onClick={() => handle()}
             className={styles.button}
             style={{ background: backgroundColorBtn, color: colorText, width: widthBtn }}
             type={typeBtn}
+            disabled={disabled}
         >
             {text}
         </button>

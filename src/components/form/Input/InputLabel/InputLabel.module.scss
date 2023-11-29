@@ -1,0 +1,15 @@
+.label {
+    position: absolute;
+    left: 2.8rem;
+
+    color: var(--clr-muted);
+    font-size: var(--fs-14);
+    font-style: normal;
+    font-weight: var(--fw-medium);
+    line-height: normal;
+
+    &_focused {
+        font-size: var(--fs-12);
+        font-weight: var(--fw-regular);
+    }
+}

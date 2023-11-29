@@ -1,0 +1,26 @@
+.input {
+    &_wrapper {
+        height: 3.25rem;
+        display: flex;
+        padding: 0.5rem 1rem;
+        align-items: center;
+        gap: 0.5rem;
+        align-self: stretch;
+        border-radius: 1rem;
+        border: 0.0625rem solid var(--clr-titan-white);
+        background: var(--clr-white, #FFF);
+
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    &_focused {
+        outline: var(--clr-primary);
+        border: 0.07rem solid var(--clr-primary);
+    }
+
+    &_error {
+        border: 0.07rem solid var(--clr-danger);
+    }
+}

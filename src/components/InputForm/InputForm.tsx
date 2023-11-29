@@ -38,11 +38,6 @@ export const InputForm = ({
     // Обработчик фокуса на поле ввода
     const handleFocus = () => {
         setIsInputFocused(true);
-
-        if (type === 'tel') {
-            // Устанавливаем начальное значение для номера телефона
-            handleChange('+7');
-        }
     };
 
     // Обработчик потери фокуса полем ввода

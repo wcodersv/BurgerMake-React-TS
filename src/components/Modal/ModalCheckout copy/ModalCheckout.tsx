@@ -1,8 +1,8 @@
 // ModalCheckout.tsx
 import React, { useState } from 'react';
 import styles from './ModalCheckout.module.scss';
-import ButtonAction from '../ButtonAction';
-import InputForm from '../InputForm';
+import ButtonAction from '../../ButtonAction';
+import InputForm from '../../InputForm';
 
 interface ModalCheckoutProps {
     toggleModal: () => void,
@@ -13,8 +13,6 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
     const [formErrors, setFormErrors] = useState<string[]>([]);
     // Состояние для значений полей ввода
     const [inputValues, setInputValues] = useState<{ [key: string]: string }>({});
-
-
 
     const inputList = [
         {
