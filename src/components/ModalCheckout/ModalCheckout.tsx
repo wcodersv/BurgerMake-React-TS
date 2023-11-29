@@ -24,7 +24,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
             imgActive: '/assets/svg/form-icon-smile-active.svg',
             imgDefault: '/assets/svg/form-icon-smile-disabled.svg',
             imgError: '/assets/svg/form-icon-smile-error.svg',
-            requiredInput: false,
+            requiredInput: true,
         },
         {
             name: 'Phone Number',
@@ -43,6 +43,26 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
             imgDefault: '/assets/svg/form-icon-address-disabled.svg',
             imgError: '/assets/svg/form-icon-address-error.svg',
             requiredInput: true,
+        },
+        {
+            name: 'Time to Delivery',
+            type: 'text',
+            inputId: 'timeDeliveryInput',
+            inputIdList: 'deliveryTimes',
+            imgActive: '/assets/svg/form-icon-arrow-active.svg',
+            imgDefault: '/assets/svg/form-icon-arrow-disabled.svg',
+            requiredInput: true,
+            options: [
+                '10:00 AM',
+                '11:00 AM',
+                '12:00 PM',
+                '1:00 PM',
+                '2:00 PM',
+                '3:00 PM',
+                '4:00 PM',
+                '5:00 PM',
+                '6:00 PM',
+            ],
         },
     ];
 
@@ -71,7 +91,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
         // Если ошибок нет, можно продолжить с логикой оформления заказа
         if (errors.length === 0) {
             // Добавьте свою логику обработки заказа здесь
-            console.log('sucses')
+            console.log('sucses') //!
             toggleModal(); // Например, закрытие модального окна после успешного оформления заказа
         }
     };
@@ -100,16 +120,18 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                                 imgActive={info.imgActive}
                                 imgDefault={info.imgDefault}
                                 inputId={info.inputId}
+                                inputIdList={info.inputIdList}
                                 imgError={info.imgError}
                                 requiredInput={info.requiredInput}
                                 handleChange={(value) => handleChange(info.inputId, value)}
                                 value={inputValues[info.inputId] || ''}
+                                options={info.options}
                             />
                         ))
                         }
                     </div>
 
-                    
+
                     <div className={styles.modal_footer}>
                         <ButtonAction
                             text='Cancel'

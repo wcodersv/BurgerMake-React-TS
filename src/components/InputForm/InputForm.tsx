@@ -7,6 +7,7 @@ interface InputFormProps {
     name: string;
     type: string;
     inputId: string;
+    inputIdList?: string;
     imgActive?: string;
     imgDefault?: string;
     imgError?: string;
@@ -26,6 +27,7 @@ export const InputForm = ({
     patternTel,
     requiredInput,
     inputId,
+    inputIdList,
     options,
     handleChange,
     value,
@@ -58,15 +60,14 @@ export const InputForm = ({
 
     // Валидация ввода
     const validateInput = () => {
-        setError(name !== 'Time to Delivery' && value.trim() === '');
+        setError(value.trim() === '');
     };
 
-    // Анимация для метки над полем ввода
+    // Анимация для label над полем ввода
     const labelSpring = useSpring({
         top: isInputFocused || value ? '10%' : '30%',
         config: { duration: 100 },
     });
-
 
 
     return (
@@ -92,21 +93,39 @@ export const InputForm = ({
                 value={value}
                 pattern={patternTel}
                 required={requiredInput ? true : false}
+                list={name === 'Time to Delivery' ? inputIdList : undefined}
             />
+            {options && name === 'Time to Delivery' && (
+                <datalist id={inputIdList}>
+                    {options.map((time, index) => (
+                        <option key={index} value={time}></option>
+                    ))}
+                </datalist>
+            )}
 
             <animated.label
                 className={`${styles.input_label} ${isInputFocused || value ? styles.input_label__focused : ''}`}
                 style={{
                     ...labelSpring,
                     color: error && requiredInput ? 'var(--clr-danger)' : '',
+                    left: name === 'Time to Delivery' ? '1rem' : '',
                 }}
                 htmlFor={inputId}
+
             >
                 {name}
             </animated.label>
 
-
-            {error && requiredInput && <p className={styles.input_error}>Required field</p>}
+            {error && requiredInput &&
+                <p
+                    className={styles.input_error}
+                    style={{
+                        left: name === 'Time to Delivery' ? '1rem' : '',
+                    }}
+                >
+                    Required field
+                </p>
+            }
         </div>
     );
 };
