@@ -1,7 +1,7 @@
 .modal {
     &_form {
         width: 100%;
-        
+
         &_main {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -29,6 +29,34 @@
     }
 }
 
-.example{
-    position: relative;
+
+.phoneinput {
+    &_container {
+        display: flex !important;
+        align-self: flex-end !important;
+        background: var(--clr-white, #FFF) !important;
+        font-family: var(--ff-main) !important;
+    }
+
+    &_input {
+        height: 2.25rem !important;
+        width: 100% !important;
+        padding: 0.0625rem 0px !important;
+
+        color: var(--clr-black) !important;
+        font-size: var(--fs-14) !important;
+        font-style: normal !important;
+        font-weight: var(--fw-semi-bold) !important;
+        line-height: 1.25rem !important;
+        border: none !important;
+
+        &_focused {
+            height: 1.25rem !important;
+            outline: none !important;
+        }
+    }
+
+    &_country {
+        display: none !important;
+    }
 }
