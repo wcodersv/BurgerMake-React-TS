@@ -1,0 +1,28 @@
+.select {
+    display: flex;
+    height: 2.25rem;
+    width: 100%;
+    padding: 0.0625rem 0px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    align-self: flex-end;
+
+    // text
+    color: var(--clr-black);
+    font-size: var(--fs-14);
+    font-style: normal;
+    font-weight: var(--fw-semi-bold);
+    line-height: 1.25rem;
+
+    &:focus {
+        outline: none;
+    }
+
+    &_focused {
+        height: 1.25rem;
+        outline: none;
+    }
+
+}

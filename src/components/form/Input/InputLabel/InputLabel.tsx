@@ -8,9 +8,10 @@ interface InputLabelProps {
     idHtmlFor: string;
     isInputFocused?: boolean;
     hasError?: boolean;
+    customClass?: object;
 }
 
-export const InputLabel = ({ titleLabel, idHtmlFor, isInputFocused, hasError }: InputLabelProps) => {
+export const InputLabel = ({ titleLabel, idHtmlFor, isInputFocused, hasError, customClass }: InputLabelProps) => {
     const labelSpring = useSpring({
         top: isInputFocused ? '10%' : '30%',
 
@@ -21,7 +22,8 @@ export const InputLabel = ({ titleLabel, idHtmlFor, isInputFocused, hasError }: 
     return (
         <animated.label
             className={`${styles.label} ${isInputFocused ? styles.label_focused : ''}`}
-            style={{ ...labelSpring }}
+            style={{ ...customClass, ...labelSpring }}
+
             htmlFor={idHtmlFor}
         >
             {titleLabel}

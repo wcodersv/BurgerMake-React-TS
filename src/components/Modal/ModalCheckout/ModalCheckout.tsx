@@ -14,6 +14,7 @@ import InputImg from '../../form/Input/InputImg';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import SelectField from '../../form/SelectField';
 
 
 
@@ -35,6 +36,7 @@ const inputList = {
     },
 };
 
+const optionsSelectTime = ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM',];
 
 interface ModalCheckoutProps {
     toggleModal: () => void,
@@ -44,6 +46,7 @@ export type FormValues = {
     username: string;
     phonenumber: string;
     shippingAddress: string;
+    timedeliveryinput: string;
 }
 
 
@@ -53,19 +56,16 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
             username: '',
             phonenumber: '',
             shippingAddress: '',
+            timedeliveryinput: '',
         },
         mode: 'onTouched',
         criteriaMode: 'all',
     });
 
-
     const { register, reset, control, handleSubmit, formState, getValues } = methods;
     const { errors, isDirty, isValid, isSubmitSuccessful } = formState;
 
     const [inputFocus, setInputFocus] = useState<string | null>(null);
-
-
-
 
     //*
     const handleInputFocus = (inputName: string) => {
@@ -157,7 +157,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                                     validPhoneNumber: (value) => {
                                         try {
                                             const phoneNumber = parsePhoneNumberFromString(`+${value}`);
-                                      
+
 
                                             if (phoneNumber && phoneNumber.isValid()) {
                                                 const fullNumber = `+${phoneNumber.countryCallingCode}${phoneNumber.nationalNumber}`;
@@ -230,8 +230,27 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                         <p className={styles.modal_error}>{errors.shippingAddress?.message}</p>
                     </InputWrapper>
 
+                    {/* time */}
+                    <InputWrapper>
+                        <SelectField
+                            {...register("timedeliveryinput")}
+                            options={optionsSelectTime}
+                            isInputFocused={inputFocus === 'timedeliveryinput' || !!getValues('timedeliveryinput')}
+                            idHtmlFor='timedeliveryinput'
+                        />
 
 
+
+
+                        <InputLabel
+                            titleLabel='Time to Delivery'
+                            idHtmlFor='timedeliveryinput'
+                            isInputFocused={inputFocus === 'timedeliveryinput' || !!getValues('timedeliveryinput')}
+                            hasError={errors.timedeliveryinput ? true : false}
+                            customClass={{ left: '1rem' }}
+                        />
+                        <p className={styles.modal_error}>{errors.timedeliveryinput?.message}</p>
+                    </InputWrapper>
 
 
                 </div>
@@ -257,7 +276,6 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                     />
                 </div>
             </form>
-
 
             {/*! Удалить в самом конце проекта */}
             <DevTool control={control} />
