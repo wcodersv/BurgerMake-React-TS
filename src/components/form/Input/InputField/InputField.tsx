@@ -1,7 +1,7 @@
 //InputField.tsx
 import React from 'react';
 import styles from './InputField.module.scss';
-import { FormValues } from '../../../Modal/ModalCheckout/ModalCheckout';
+import { FormValues } from '../../../modal/ModalCheckout/ModalCheckout';
 import { Path, UseFormRegister, ValidationRule } from "react-hook-form";
 
 type InputFieldProps = {

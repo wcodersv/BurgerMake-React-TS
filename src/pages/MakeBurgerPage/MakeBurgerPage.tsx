@@ -6,7 +6,7 @@ import Ingredient from '../../components/Ingredient';
 import ingredientsData from '../../data/BurgerIngredients.json';
 import { animated, config, useSpring, useSprings } from 'react-spring';
 import PlaceholderQuestion from '../../components/PlaceholderQuestion';
-import ModalCheckout from '../../components/Modal/ModalCheckout';
+import ModalCheckout from '../../components/modal/ModalCheckout';
 
 export const MakeBurgerPage = () => {
     interface BurgerIngredient {
@@ -170,6 +170,12 @@ export const MakeBurgerPage = () => {
 
     const toggleModal = () => {
         setCheckoutModalOpen(!isCheckoutModalOpen);
+        setBurgerIngredients([initialIngredientData]);
+        setBurgerTime(initialIngredientData.time);
+        setBurgerWeight(initialIngredientData.oz);
+        setBurgerKcal(initialIngredientData.kcal);
+        setBurgerPrice(initialIngredientData.price);
+        setTomatoKetchup(false);
     };
 
     return (
@@ -240,6 +246,7 @@ export const MakeBurgerPage = () => {
                 </animated.div>
             </div>
             {isCheckoutModalOpen ? <ModalCheckout toggleModal={toggleModal} /> : ''}
+
         </main>
     )
 }

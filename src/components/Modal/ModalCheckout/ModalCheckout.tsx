@@ -15,6 +15,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import SelectField from '../../form/SelectField';
+import ModalSuccess from '../ModalSuccess';
 
 
 
@@ -66,37 +67,37 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
     const { errors, isDirty, isValid, isSubmitSuccessful } = formState;
 
     const [inputFocus, setInputFocus] = useState<string | null>(null);
+    const [isFormSubmitted, setFormSubmitted] = useState(false);
+    const [formData, setFormData] = useState<FormValues>({ username: '', phonenumber: '', shippingAddress: '', timedeliveryinput: '' });
 
-    //*
+
+
+
     const handleInputFocus = (inputName: string) => {
         setInputFocus(inputName);
     };
 
-    //*
     const handleInputBlur = () => {
         setInputFocus(null);
     };
 
-    //*
     const onSubmitForm = (data: FormValues) => {
         console.log(data)
-
-        //& toggleModal(); 
+        setFormData(data);
+        setFormSubmitted(true);
     }
 
-    //*
     const onError = (errors: FieldErrors<FormValues>) => {
         console.log('Form errors', errors)
     }
 
-    //*
+
     useEffect(() => {
         if (isSubmitSuccessful) {
             reset();
+            setFormSubmitted(true);
         }
     }, [isSubmitSuccessful, reset])
-
-
 
 
     return (
@@ -238,10 +239,6 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                             isInputFocused={inputFocus === 'timedeliveryinput' || !!getValues('timedeliveryinput')}
                             idHtmlFor='timedeliveryinput'
                         />
-
-
-
-
                         <InputLabel
                             titleLabel='Time to Delivery'
                             idHtmlFor='timedeliveryinput'
@@ -251,8 +248,6 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                         />
                         <p className={styles.modal_error}>{errors.timedeliveryinput?.message}</p>
                     </InputWrapper>
-
-
                 </div>
 
 
@@ -276,9 +271,12 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                     />
                 </div>
             </form>
-
             {/*! Удалить в самом конце проекта */}
             <DevTool control={control} />
+
+            {isFormSubmitted ? <ModalSuccess toggleModal={toggleModal} data={formData} /> : ''}
+
         </ModalWrapper>
+
     )
 }

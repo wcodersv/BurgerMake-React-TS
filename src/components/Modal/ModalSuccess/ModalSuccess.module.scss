@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1rem;
+
+    &_title {
+        font-family: var(--ff-main);
+        font-size: var(--fs-24);
+        text-align: center;
+    }
+
+    &_img {
+        width: 8rem;
+        height: 8rem;
+    }
+
+
+    &_info {
+        display: flex;
+        flex-direction: column;
+        gap:0.7rem;
+        align-self: flex-start;
+        padding: 1.5rem 1rem 1.5rem 1.5rem;
+        font-family: var(--ff-main);
+        font-size: var(--fs-16);
+        font-weight: var(--fw-medium);
+        font-style: normal;
+        line-height: 1.25rem;
+        color: var(--clr-black);
+    }
+}

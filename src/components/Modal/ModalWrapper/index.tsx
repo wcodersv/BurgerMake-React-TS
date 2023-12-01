@@ -1,2 +1,2 @@
-import { ModalWrapper } from "./ModalWrapper";
+import { ModalWrapper } from './ModalWrapper';
 export default ModalWrapper;
