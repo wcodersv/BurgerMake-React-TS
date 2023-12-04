@@ -62,8 +62,8 @@
       "price": 1,
       "time": 1,
       "img": "/assets/burger/tomatoe.svg",
-      "img_group": "/assets/burger/tomatoe-group.svg",
-      "height": 3.5,
+      "img_group": "/assets/burger/tomatoe-group.png",
+      "height": 3,
       "width": 80,
       "left": 10
    },
