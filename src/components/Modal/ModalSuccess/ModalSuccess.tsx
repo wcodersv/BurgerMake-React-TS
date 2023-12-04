@@ -26,7 +26,7 @@ export const ModalSuccess = ({ toggleModal, data }: ModalSuccessProps) => {
                 />
                 <div className={styles.container}>
                     <img
-                        src="/assets/svg/form-icon-success.svg"
+                        src={`${process.env.PUBLIC_URL}/assets/svg/form-icon-success.svg`}
                         alt=""
                         className={styles.container_img}
                     />

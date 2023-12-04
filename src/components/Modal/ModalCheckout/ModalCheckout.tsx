@@ -21,19 +21,19 @@ import ModalSuccess from '../ModalSuccess';
 
 const inputList = {
     'username': {
-        imgActive: '/assets/svg/form-icon-smile-active.svg',
-        imgDefault: '/assets/svg/form-icon-smile-disabled.svg',
-        imgError: '/assets/svg/form-icon-smile-error.svg',
+        imgActive: `${process.env.PUBLIC_URL}/assets/svg/form-icon-smile-active.svg`,
+        imgDefault: `${process.env.PUBLIC_URL}/assets/svg/form-icon-smile-disabled.svg`,
+        imgError: `${process.env.PUBLIC_URL}/assets/svg/form-icon-smile-error.svg`,
     },
     'phonenumber': {
-        imgActive: '/assets/svg/form-icon-phone-active.svg',
-        imgDefault: '/assets/svg/form-icon-phone-disabled.svg',
-        imgError: '/assets/svg/form-icon-phone-error.svg',
+        imgActive: `${process.env.PUBLIC_URL}/assets/svg/form-icon-phone-active.svg`,
+        imgDefault: `${process.env.PUBLIC_URL}/assets/svg/form-icon-phone-disabled.svg`,
+        imgError: `${process.env.PUBLIC_URL}/assets/svg/form-icon-phone-error.svg`,
     },
     'shippingAddress': {
-        imgActive: '/assets/svg/form-icon-address-active.svg',
-        imgDefault: '/assets/svg/form-icon-address-disabled.svg',
-        imgError: '/assets/svg/form-icon-address-error.svg',
+        imgActive: `${process.env.PUBLIC_URL}/assets/svg/form-icon-address-active.svg`,
+        imgDefault: `${process.env.PUBLIC_URL}/assets/svg/form-icon-address-disabled.svg`,
+        imgError: `${process.env.PUBLIC_URL}/assets/svg/form-icon-address-error.svg`,
     },
 };
 

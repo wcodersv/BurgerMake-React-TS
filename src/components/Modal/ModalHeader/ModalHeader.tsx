@@ -9,11 +9,11 @@ interface ModalHeaderProps {
 export const ModalHeader = ({ title, handle }: ModalHeaderProps) => {
     return (
         <div className={styles.modal_header}>
-            <img src="/assets/svg/modal-icon-circle.svg" alt="" />
+            <img src={`${process.env.PUBLIC_URL}/assets/svg/modal-icon-circle.svg`} alt="" />
             <h2 className={styles.modal_header__title}>{title}</h2>
 
             <img
-                src="/assets/svg/modal-icon-close.svg"
+                src={`${process.env.PUBLIC_URL}/assets/svg/modal-icon-close.svg`}
                 alt=""
                 className={styles.modal_header__btn}
                 onClick={handle}
