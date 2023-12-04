@@ -272,7 +272,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                 </div>
             </form>
             {/*! Удалить в самом конце проекта */}
-            <DevTool control={control} />
+            {/* <DevTool control={control} /> */}
 
             {isFormSubmitted ? <ModalSuccess toggleModal={toggleModal} data={formData} /> : ''}
 
