@@ -21,3 +21,4 @@
 Элементы (ингредиенты) добавялются автоматически из файла json. Каждый из ингредиентов имеет свою стоимость, время приготовления, вес и количество калорий.
 
 
+ <a href='https://www.figma.com/file/R4MkRVzRHinZP7W8YpH4mH/Make-burger-publish?type=design&node-id=402%3A2090&mode=design&t=hseckfRHhphJjR0f-1'>Макет Figma</a>
