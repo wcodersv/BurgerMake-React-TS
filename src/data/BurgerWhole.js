@@ -2,7 +2,7 @@ export const ingredients = [
     {
         'name': 'bun_bottom',
         'alt': 'bun',
-        'src': 'assets/burger/bun_bottom_show.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/bun_bottom_show.svg`,
         'width': '100%',
         'height': 'auto',
         'top': '80%',
@@ -11,7 +11,7 @@ export const ingredients = [
     {
         'name': 'mayo',
         'alt': 'mayo',
-        'src': 'assets/burger/mayo.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/mayo.svg`,
         'width': '82%',
         'height': 'auto',
         'top': '82%',
@@ -20,7 +20,7 @@ export const ingredients = [
     {
         'name': 'salad-bottom',
         'alt': 'salad',
-        'src': 'assets/burger/salad.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/salad.svg`,
         'width': '90%',
         'height': 'auto',
         'top': '74%',
@@ -29,7 +29,7 @@ export const ingredients = [
     {
         'name': 'cheese',
         'alt': 'cheese',
-        'src': 'assets/burger/cheese.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/cheese.svg`,
         'width': '90%',
         'height': 'auto',
         'top': '77%',
@@ -38,7 +38,7 @@ export const ingredients = [
     {
         'name': 'onion-1',
         'alt': 'onion',
-        'src': 'assets/burger/onion.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/onion.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '70%',
@@ -47,7 +47,7 @@ export const ingredients = [
     {
         'name': 'onion-2',
         'alt': 'onion',
-        'src': 'assets/burger/onion.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/onion.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '70%',
@@ -56,7 +56,7 @@ export const ingredients = [
     {
         'name': 'onion-3',
         'alt': 'onion',
-        'src': 'assets/burger/onion.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/onion.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '70%',
@@ -65,7 +65,7 @@ export const ingredients = [
     {
         'name': 'onion-4',
         'alt': 'onion',
-        'src': 'assets/burger/onion.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/onion.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '70%',
@@ -74,7 +74,7 @@ export const ingredients = [
     {
         'name': 'onion-5',
         'alt': 'onion',
-        'src': 'assets/burger/onion.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/onion.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '70%',
@@ -83,7 +83,7 @@ export const ingredients = [
     {
         'name': 'onion-6',
         'alt': 'onion',
-        'src': 'assets/burger/onion.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/onion.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '70%',
@@ -92,7 +92,7 @@ export const ingredients = [
     {
         'name': 'cutlet',
         'alt': 'cutlet',
-        'src': 'assets/burger/cutlet.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/cutlet.svg`,
         'width': '87%',
         'height': 'auto',
         'top': '57%',
@@ -101,7 +101,7 @@ export const ingredients = [
     {
         'name': 'tomato-1',
         'alt': 'tomato',
-        'src': 'assets/burger/tomatoe.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/tomatoe.svg`,
         'width': '50%',
         'height': 'auto',
         'top': '53%',
@@ -110,7 +110,7 @@ export const ingredients = [
     {
         'name': 'tomato-2',
         'alt': 'tomato',
-        'src': 'assets/burger/tomatoe.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/tomatoe.svg`,
         'width': '50%',
         'height': 'auto',
         'top': '53%',
@@ -119,7 +119,7 @@ export const ingredients = [
     {
         'name': 'tomato-3',
         'alt': 'tomato',
-        'src': 'assets/burger/tomatoe.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/tomatoe.svg`,
         'width': '50%',
         'height': 'auto',
         'top': '53%',
@@ -128,7 +128,7 @@ export const ingredients = [
     {
         'name': 'tomato-4',
         'alt': 'tomato',
-        'src': 'assets/burger/tomatoe.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/tomatoe.svg`,
         'width': '50%',
         'height': 'auto',
         'top': '54%',
@@ -137,7 +137,7 @@ export const ingredients = [
     {
         'name': 'cucumber-1',
         'alt': 'cucumber',
-        'src': 'assets/burger/cucumber.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/cucumber.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '44%',
@@ -146,7 +146,7 @@ export const ingredients = [
     {
         'name': 'cucumber-2',
         'alt': 'cucumber',
-        'src': 'assets/burger/cucumber.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/cucumber.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '44%',
@@ -155,7 +155,7 @@ export const ingredients = [
     {
         'name': 'cucumber-3',
         'alt': 'cucumber',
-        'src': 'assets/burger/cucumber.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/cucumber.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '44%',
@@ -164,7 +164,7 @@ export const ingredients = [
     {
         'name': 'cucumber-4',
         'alt': 'cucumber',
-        'src': 'assets/burger/cucumber.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/cucumber.svg`,
         'width': '40%',
         'height': 'auto',
         'top': '44%',
@@ -173,7 +173,7 @@ export const ingredients = [
     {
         'name': 'salad-top',
         'alt': 'salad',
-        'src': 'assets/burger/salad.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/salad.svg`,
         'width': '90%',
         'height': 'auto',
         'top': '45%',
@@ -182,7 +182,7 @@ export const ingredients = [
     {
         'name': 'mayo-top',
         'alt': 'salad',
-        'src': 'assets/burger/mayo.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/mayo.svg`,
         'width': '85%',
         'height': 'auto',
         'top': '45%',
@@ -191,7 +191,7 @@ export const ingredients = [
     {
         'name': 'bun-top',
         'alt': 'salad',
-        'src': 'assets/burger/bun_top.svg',
+        'src': `${process.env.PUBLIC_URL}/assets/burger/bun_top.svg`,
         'width': '85%',
         'height': 'auto',
         'top': '17%',

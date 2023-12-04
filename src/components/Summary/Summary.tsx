@@ -15,7 +15,7 @@ export const Summary = ({ time, weight, kcal, price, toggleModal }: summaryProps
     const detailsFood = [
         {
             'name': 'time',
-            'src': '/assets/svg/summary-clock.svg',
+            'src': `${process.env.PUBLIC_URL}/assets/svg/summary-clock.svg`,
             'content': `${time} min`,
             'color': 'var(--clr-heliotrope)',
             'img': {
@@ -25,7 +25,7 @@ export const Summary = ({ time, weight, kcal, price, toggleModal }: summaryProps
         },
         {
             'name': 'weight',
-            'src': '/assets/svg/summary-scale.svg',
+            'src': `${process.env.PUBLIC_URL}/assets/svg/summary-scale.svg`,
             'content': `${weight.toFixed(1)} oz`,
             'color': 'var( --clr-tan-hide)',
             'img': {
@@ -35,7 +35,7 @@ export const Summary = ({ time, weight, kcal, price, toggleModal }: summaryProps
         },
         {
             'name': 'kcal',
-            'src': '/assets/svg/summary-fire.svg',
+            'src': `${process.env.PUBLIC_URL}/assets/svg/summary-fire.svg`,
             'content': `${kcal} kcal`,
             'color': 'var(--clr-danger)',
             'img': {

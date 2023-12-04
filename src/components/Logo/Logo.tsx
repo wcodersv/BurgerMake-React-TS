@@ -6,7 +6,7 @@ import styles from './Logo.module.scss';
 export const Logo = () => (
   <div className={styles.logo}>
     <Link to='/'>
-      <img src='/logo.svg' alt='logo' />
+      <img src={`${process.env.PUBLIC_URL}/assets/logo.svg`} alt='logo' />
     </Link>
   </div>
 );

@@ -18,7 +18,7 @@ export const Ingredient = ({ name, imgSrc, onAddIngredient, onDeleteIngredient, 
     <div className={styles.container}>
       <div className={styles.container_ingredient}>
         <img
-          src={imgSrc}
+          src={`${process.env.PUBLIC_URL}${imgSrc}`}
           alt={name}
           className={styles.container_ingredient__img}
         />

@@ -19,7 +19,7 @@ export const ButtonCall = () => {
         >
             <animated.img
                 style={springProps}
-                src='/assets/svg/header-call.svg'
+                src={`${process.env.PUBLIC_URL}/assets/svg/header-call.svg`}
                 alt=' '
             />
             Call Me Back

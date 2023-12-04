@@ -190,7 +190,7 @@ export const MakeBurgerPage = () => {
                                 <animated.img
                                     key={`${burgerIngredients[index].name}-${index}`}
                                     className={styles.main_burger__scene__element}
-                                    src={burgerIngredients[index].img_group || burgerIngredients[index].img}
+                                    src={`${process.env.PUBLIC_URL}${burgerIngredients[index].img_group || burgerIngredients[index].img}`}
                                     alt={`${burgerIngredients[index].name}`}
                                     style={{
                                         bottom: `${bottomIngredientPositions[index]}%`,
@@ -203,7 +203,7 @@ export const MakeBurgerPage = () => {
                             ))}
 
                             <animated.img
-                                src='/assets/burger/ketchup1.webp'
+                                src={`${process.env.PUBLIC_URL}/assets/burger/ketchup1.webp`}
                                 alt=' '
                                 className={styles.main_burger_ketchup}
                                 style={ketchupShowSpring}
