@@ -9,12 +9,12 @@ interface ModalSuccessProps {
         username: string;
         phonenumber: string;
         shippingAddress: string;
-        timedeliveryinput: string;
+        timedelivery: string;
     };
 }
 
 export const ModalSuccess = ({ toggleModal, data }: ModalSuccessProps) => {
-    const { username, phonenumber, shippingAddress, timedeliveryinput } = data || {};
+    const { username, phonenumber, shippingAddress, timedelivery } = data || {};
 
 
     return (
@@ -36,7 +36,7 @@ export const ModalSuccess = ({ toggleModal, data }: ModalSuccessProps) => {
                     <div className={styles.container_info}>
                         <p>Phone Number: {phonenumber}</p>
                         <p>Shipping Address: {shippingAddress}</p>
-                        <p>Time to Delivery: {timedeliveryinput}</p>
+                        <p>Time to Delivery: {timedelivery}</p>
 
                     </div>
                 </div>

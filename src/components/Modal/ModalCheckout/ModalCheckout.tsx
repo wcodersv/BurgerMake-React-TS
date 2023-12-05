@@ -47,7 +47,7 @@ export type FormValues = {
     username: string;
     phonenumber: string;
     shippingAddress: string;
-    timedeliveryinput: string;
+    timedelivery: string;
 }
 
 
@@ -57,7 +57,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
             username: '',
             phonenumber: '',
             shippingAddress: '',
-            timedeliveryinput: '',
+            timedelivery: '',
         },
         mode: 'onTouched',
         criteriaMode: 'all',
@@ -68,7 +68,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
 
     const [inputFocus, setInputFocus] = useState<string | null>(null);
     const [isFormSubmitted, setFormSubmitted] = useState(false);
-    const [formData, setFormData] = useState<FormValues>({ username: '', phonenumber: '', shippingAddress: '', timedeliveryinput: '' });
+    const [formData, setFormData] = useState<FormValues>({ username: '', phonenumber: '', shippingAddress: '', timedelivery: '' });
 
 
 
@@ -232,21 +232,21 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                     </InputWrapper>
 
                     {/* time */}
-                    <InputWrapper>
+                    <InputWrapper onFocus={() => handleInputFocus('timedelivery')} onBlur={handleInputBlur} hasError={errors.timedelivery ? true : false}>
                         <SelectField
-                            {...register("timedeliveryinput")}
+                            {...register("timedelivery")}
                             options={optionsSelectTime}
-                            isInputFocused={inputFocus === 'timedeliveryinput' || !!getValues('timedeliveryinput')}
+                            isInputFocused={inputFocus === 'timedelivery' || !!getValues('timedelivery')}
                             idHtmlFor='timedeliveryinput'
                         />
                         <InputLabel
                             titleLabel='Time to Delivery'
                             idHtmlFor='timedeliveryinput'
-                            isInputFocused={inputFocus === 'timedeliveryinput' || !!getValues('timedeliveryinput')}
-                            hasError={errors.timedeliveryinput ? true : false}
+                            isInputFocused={inputFocus === 'timedelivery' || !!getValues('timedelivery')}
+                            hasError={errors.timedelivery ? true : false}
                             customClass={{ left: '1rem' }}
                         />
-                        <p className={styles.modal_error}>{errors.timedeliveryinput?.message}</p>
+                        <p className={styles.modal_error}>{errors.timedelivery?.message}</p>
                     </InputWrapper>
                 </div>
 
