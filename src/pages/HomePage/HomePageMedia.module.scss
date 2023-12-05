@@ -1,0 +1,94 @@
+@media screen and (max-width: 800px) {
+    .main {
+
+        &_container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            height: auto;
+            padding-top: 6rem;
+        }
+
+
+        &_header {
+            font-size: var(--fs-48);
+        }
+
+        &_discover {
+            aspect-ratio: 1;
+        }
+
+
+        &_btn {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+
+
+        &_mobile {
+            &_description {
+                display: block;
+            }
+        }
+
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .main {
+
+        &_container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            height: auto;
+        }
+
+
+        &_header {
+            font-size: var(--fs-48);
+        }
+
+        &_discover {
+            aspect-ratio: 1;
+        }
+
+        &_mobile {
+            &_description {
+                margin-bottom: 2rem;
+            }
+        }
+
+    }
+}
+
+
+@media screen and (max-width: 350px) {
+    .main {
+        &_container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            height: auto;
+        }
+
+
+        &_header {
+            font-size: var(--fs-40);
+            width: auto;
+        }
+
+        &_discover {
+            aspect-ratio: 1;
+        }
+
+        &_mobile {
+            &_description {
+                margin-bottom: 2rem;
+            }
+        }
+
+    }
+}

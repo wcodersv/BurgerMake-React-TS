@@ -9,7 +9,8 @@ export const HomePage: React.FC = () => {
     return (
         <main>
             <div className={`${styles.main_container} container`}>
-                <h1 className={styles.main_header}>Make <br /> Your <br /> Burger </h1>
+                <h1 className={styles.main_header}>Make Your Burger </h1>
+                <p className={styles.main_mobile_description}>Parallax screen. Burger ingredients and emojis moving depending on the position of the mouse pointer.</p>
 
                 <div className={styles.main_discover}>
                     <BurgerAnimation />

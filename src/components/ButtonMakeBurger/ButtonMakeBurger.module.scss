@@ -4,7 +4,6 @@
     height: 9rem;
     justify-content: center;
     align-items: center;
-    // background: var(--clr-primary);
 
     a {
         text-decoration: none;
@@ -17,3 +16,5 @@
         text-transform: uppercase;
     }
 }
+
+@import './ButtonMakeBurgerMedia.module.scss';

@@ -1,16 +1,17 @@
 .header {
+    margin: 1rem auto;
+
+    /* text */
+    font-size: var(--fs-16);
+    font-style: normal;
+    font-weight: var(--fw-semi-bold);
+    line-height: 1.25rem;
+    /* 125% */
+
     &_container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 1rem auto;
-
-        /* text */
-        font-size: var(--fs-16);
-        font-style: normal;
-        font-weight: var(--fw-semi-bold);
-        line-height: 1.25rem;
-        /* 125% */
     }
 
     &_nav {
@@ -24,15 +25,15 @@
         justify-content: space-between;
         align-items: center;
         gap: 3.75rem;
+    }
 
-        &__tel {
-            text-decoration: none;
-            color: var(--clr-black);
-
-            &:hover {
-                cursor: pointer;
-                text-decoration: underline;
-            }
-        }
+    &_mobile {
+        display: none;
+        padding: 0;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
     }
 }
+
+@import './HeaderMedia.scss';

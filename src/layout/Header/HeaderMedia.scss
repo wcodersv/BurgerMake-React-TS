@@ -1,0 +1,21 @@
+@media screen and (max-width: 800px) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: var(--z-index-mobile-menu);
+        background-color: var(--clr-white);
+        padding: 1rem 0;
+        margin: 0 auto;
+
+        &_container {
+            display: none;
+        }
+
+
+        &_mobile {
+            display: flex;
+        }
+    }
+}

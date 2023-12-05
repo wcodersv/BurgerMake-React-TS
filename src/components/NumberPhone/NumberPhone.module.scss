@@ -1,0 +1,18 @@
+.call {
+    /* text */
+    font-size: var(--fs-16);
+    font-style: normal;
+    font-weight: var(--fw-semi-bold);
+    line-height: 1.25rem;
+    /* 125% */
+
+    &__tel {
+        text-decoration: none;
+        color: var(--clr-black);
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}

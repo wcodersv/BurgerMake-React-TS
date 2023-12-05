@@ -10,6 +10,7 @@
 
 
     &_header {
+        width: 20rem;
         color: var(--clr-black);
         font-size: var(--fs-72);
         font-style: normal;
@@ -24,6 +25,7 @@
         justify-content: center;
         align-content: center;
         align-items: center;
+        // aspect-ratio: 1;
         // align-items: flex-end;
 
         background-image: url('../../../public/assets/svg/main-background-burger.svg');
@@ -37,9 +39,27 @@
     }
 
 
-    &_btn{
+    &_btn {
         position: absolute;
         top: 60%;
         left: 10%;
     }
+
+
+    &_mobile {
+        display: none;
+
+        &_description {
+            display: none;
+            color: var(--clr-black);
+            font-size: var(--fs-20);
+            font-style: normal;
+            font-weight: var(--fw-regular);
+            line-height: 2rem;
+        }
+    }
+
 }
+
+
+@import './HomePageMedia.module.scss';

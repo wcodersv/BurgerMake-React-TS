@@ -25,3 +25,29 @@
         font-size: 11px;
     }
 }
+
+
+@media screen and (max-width: 800px) {
+    :root{
+        --maxWidth: 800px;
+        font-size: 14px;
+    }
+}
+
+
+
+@media screen and (max-width: 400px) {
+    :root{
+        --maxWidth: 400px;
+        font-size: 13px;
+    }
+
+  
+}
+
+@media screen and (max-width: 350px) {
+    :root{
+        --maxWidth: 350px;
+        font-size: 12px;
+    }
+}

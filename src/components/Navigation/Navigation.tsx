@@ -10,10 +10,15 @@ interface Menu {
 
 interface Props {
     menus: Menu[];
+    closeMobileMenu: () => void;
 }
 
-export const Navigation = ({ menus }: Props) => {
+export const Navigation = ({ menus, closeMobileMenu }: Props) => {
     const location = useLocation();
+
+    const handleMenuClick = () => {
+        closeMobileMenu();
+    };
 
     return (
         <ul className={styles.nav}>
@@ -22,6 +27,7 @@ export const Navigation = ({ menus }: Props) => {
                     to={menu.link}
                     key={menu.name}
                     className={location.pathname === menu.link ? styles.nav_menu__active : styles.nav_menu__noactive}
+                    onClick={handleMenuClick}
                 >
                     <li>{menu.name}</li>
                 </NavLink>

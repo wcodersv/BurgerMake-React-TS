@@ -69,6 +69,7 @@
     --z-index-placeholdar-question-befor: 100;
     --z-index-placeholdar-question: 150;
     --z-index-tomato-ketchup:200;
+    --z-index-mobile-menu: 300;
     --z-index-modal-checkout: 10000;
 }
 
@@ -76,6 +77,11 @@ body {
     background: #FFF;
     font-family: 'Open Sans', sans-serif;
 }
+
+#root{
+    margin: 0 auto;
+}
+
 
 .container {
     width: min(var(--maxWidth), 100% - var(--padding)*2);
