@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/BurgerMake-React-TS/static/css/main.d8f1f5f8.css",
-    "main.js": "/BurgerMake-React-TS/static/js/main.9e441749.js",
+    "main.css": "/BurgerMake-React-TS/static/css/main.b75933bc.css",
+    "main.js": "/BurgerMake-React-TS/static/js/main.67a00d9e.js",
     "index.html": "/BurgerMake-React-TS/index.html",
     "static/media/main-background-burger.svg": "/BurgerMake-React-TS/static/media/main-background-burger.a4c3bc46fbc211466e7d.svg",
     "static/media/main-background-make-burger.svg": "/BurgerMake-React-TS/static/media/main-background-make-burger.d6d74fa855032f2e6434.svg",
-    "main.d8f1f5f8.css.map": "/BurgerMake-React-TS/static/css/main.d8f1f5f8.css.map",
-    "main.9e441749.js.map": "/BurgerMake-React-TS/static/js/main.9e441749.js.map"
+    "main.b75933bc.css.map": "/BurgerMake-React-TS/static/css/main.b75933bc.css.map",
+    "main.67a00d9e.js.map": "/BurgerMake-React-TS/static/js/main.67a00d9e.js.map"
   },
   "entrypoints": [
-    "static/css/main.d8f1f5f8.css",
-    "static/js/main.9e441749.js"
+    "static/css/main.b75933bc.css",
+    "static/js/main.67a00d9e.js"
   ]
 }
