@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/BurgerMake-React-TS/static/css/main.8fc2917d.css",
-    "main.js": "/BurgerMake-React-TS/static/js/main.8e8a848e.js",
+    "main.js": "/BurgerMake-React-TS/static/js/main.09da0361.js",
     "index.html": "/BurgerMake-React-TS/index.html",
     "static/media/main-background-burger.svg": "/BurgerMake-React-TS/static/media/main-background-burger.a4c3bc46fbc211466e7d.svg",
     "static/media/main-background-make-burger.svg": "/BurgerMake-React-TS/static/media/main-background-make-burger.d6d74fa855032f2e6434.svg",
     "main.8fc2917d.css.map": "/BurgerMake-React-TS/static/css/main.8fc2917d.css.map",
-    "main.8e8a848e.js.map": "/BurgerMake-React-TS/static/js/main.8e8a848e.js.map"
+    "main.09da0361.js.map": "/BurgerMake-React-TS/static/js/main.09da0361.js.map"
   },
   "entrypoints": [
     "static/css/main.8fc2917d.css",
-    "static/js/main.8e8a848e.js"
+    "static/js/main.09da0361.js"
   ]
 }
