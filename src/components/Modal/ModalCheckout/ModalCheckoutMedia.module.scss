@@ -1,0 +1,9 @@
+@media screen and (max-width: 600px) {
+    .modal {
+        &_form {
+            &_main {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    }
+}
