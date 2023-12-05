@@ -1,7 +1,7 @@
 @media screen and (max-width: 950px) {
     .main {
         &_container {
-           gap: 2rem;
+            gap: 2rem;
         }
     }
 }
@@ -13,5 +13,93 @@
             font-size: var(--fs-55);
             line-height: 4rem;
         }
+
+
     }
 }
+
+@media screen and (max-width: 800px) {
+    .main {
+        &_container {
+            padding-top: 6rem;
+            grid-template-columns: 1fr;
+            column-gap: 0;
+            row-gap: 2rem;
+        }
+
+        &_grid {
+            grid-template-columns: repeat(1, 1fr);
+            width: 100%;
+            height: auto;
+            justify-items: center;
+            gap: 2rem;
+        }
+
+        &_header {
+            display: none;
+        }
+
+        &_burger {
+            aspect-ratio: 1/1;
+            width: 80%;
+        }
+
+        &_summary {
+            width: 100%;
+            gap:0.5rem;
+
+            &_ketchup {
+                display: flex;
+                padding: 0.75rem 1.5rem;
+                justify-content: center;
+                align-items: center;
+                gap: 0.5rem;
+                align-self: stretch;
+                border-radius: 1.25rem;
+                background: var(--clr-red-200);
+
+                // text
+                font-style: normal;
+                font-weight: var(--fw-regular);
+                line-height: 1.25rem;
+
+                &_title {
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: var(--fw-regular);
+                    line-height: 1.25rem;
+                }
+
+                &_weight {
+                    display: flex;
+                    padding: 0.375rem 0.4375rem;
+                    align-items: center;
+                    gap: 0.625rem;
+                    border-radius: 1.1875rem;
+                    background: var(--clr-danger);
+
+                    color: var(--clr-white);
+                    font-size: 0.75rem;
+                    line-height: normal;
+                }
+            }
+        }
+
+        &_ingredients {
+            flex-wrap: nowrap; 
+            justify-content: flex-start; 
+            overflow-x: auto; 
+        }
+
+        &_total{
+            display: block;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 500px) {}
+
+
+@media screen and (max-width: 350px) {}

@@ -1,0 +1,8 @@
+@media screen and (max-width: 800px) {
+    .footer {
+        &_payment {
+            width: 100%;
+            justify-content: space-around;
+        }
+    }
+}

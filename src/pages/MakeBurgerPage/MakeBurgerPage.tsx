@@ -7,6 +7,7 @@ import ingredientsData from '../../data/BurgerIngredients.json';
 import { animated, config, useSpring, useSprings } from 'react-spring';
 import PlaceholderQuestion from '../../components/PlaceholderQuestion';
 import ModalCheckout from '../../components/modal/ModalCheckout';
+import TotalAmount from '../../components/TotalAmount';
 
 export const MakeBurgerPage = () => {
     interface BurgerIngredient {
@@ -220,9 +221,13 @@ export const MakeBurgerPage = () => {
                             toggleModal={toggleModal}
                         />
 
-                        <p onClick={handleTomatoKetchupClick}>
-                            <span>{`${tomatoKetchup ? '–' : '+'} Tomato Ketchup`}</span> 1.2 oz
-                        </p>
+                        <div
+                            onClick={handleTomatoKetchupClick}
+                            className={styles.main_summary_ketchup}
+                        >
+                            <span className={styles.main_summary_ketchup_title}>{`${tomatoKetchup ? '–' : '+'} Tomato Ketchup`}</span>
+                            <span className={styles.main_summary_ketchup_weight}> 1.2 oz</span>
+                        </div>
                     </div>
                 </div>
 
@@ -237,6 +242,13 @@ export const MakeBurgerPage = () => {
                             quantity={burgerIngredients.filter((item) => item === ingredient).length}
                         />
                     ))}
+                </div>
+
+                <div className={styles.main_total}>
+                    <TotalAmount
+                        price={burgerPrice}
+                        toggleModal={toggleModal}
+                    />
                 </div>
 
                 <animated.div

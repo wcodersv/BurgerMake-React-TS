@@ -1,0 +1,25 @@
+@media screen and (max-width: 800px) {
+    .summary {
+        &_header {
+            display: none;
+        }
+
+
+        &_details {
+            order: -2;
+            background: none;
+
+            &_information {
+                justify-content: center;
+            }
+        }
+
+        &_total {
+            display: none;
+        }
+    }
+
+    .line {
+        display: none;
+    }
+}

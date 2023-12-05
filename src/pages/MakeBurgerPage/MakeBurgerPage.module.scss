@@ -70,18 +70,23 @@
         flex-direction: column;
         gap: 3rem;
 
-        color: var(--clr-black);
-        font-size: var(--fs-18);
-        font-style: normal;
-        font-weight: var(--fw-semi-bold);
-        line-height: 2rem;
-
-        span {
-            color: var(--clr-danger);
-        }
-
         &:hover {
             cursor: pointer;
+        }
+
+        &_ketchup {
+            font-size: var(--fs-18);
+            font-style: normal;
+            font-weight: var(--fw-semi-bold);
+            line-height: 2rem;
+
+            &_title {
+                color: var(--clr-danger);
+            }
+
+            &_weight{
+                color: var(--clr-black);
+            }
         }
     }
 
@@ -98,6 +103,10 @@
         padding-bottom: 0;
         margin-bottom: 0;
         height: auto;
+    }
+
+    &_total{
+        display: none;
     }
 
     &_question {

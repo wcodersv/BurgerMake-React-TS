@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Summary.module.scss';
 import ButtonAction from '../ButtonAction';
+import TotalAmount from '../TotalAmount';
 
 interface summaryProps {
     time: number,
@@ -51,22 +52,10 @@ export const Summary = ({ time, weight, kcal, price, toggleModal }: summaryProps
             <span className={styles.line} />
 
             <div className={styles.summary_total}>
-                <div className={styles.summary_total_container}>
-                    <p className={styles.summary_total_container__price}>{`$${price.toFixed(2)}`}</p>
-
-                    <ButtonAction
-                        text='Checkout'
-                        backgroundColorBtn='var(--clr-primary)'
-                        colorText='var(--clr-titan-white)'
-                        widthBtn='12rem'
-                        handle={toggleModal}
-                    />
-                </div>
-                <p
-                    className={styles.summary_total_description}
-                >
-                    Build a <span>$10</span> Burger and Get a Gift
-                </p>
+                <TotalAmount
+                    price={price}
+                    toggleModal={toggleModal}
+                />
             </div>
 
             <div className={styles.summary_details}>

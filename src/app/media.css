@@ -30,7 +30,7 @@
 @media screen and (max-width: 800px) {
     :root{
         --maxWidth: 800px;
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
