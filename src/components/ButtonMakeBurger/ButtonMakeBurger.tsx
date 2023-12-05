@@ -11,7 +11,7 @@ export const ButtonMakeBurger = () => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setShowButton(true);
-        }, 2600);
+        }, 1500);
 
         return () => clearTimeout(timeoutId);
     }, []);
