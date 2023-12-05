@@ -8,23 +8,31 @@ import BurgerWhole from '../BurgerWhole';
 
 
 export const BurgerAnimation: React.FC = () => {
-    const [showBurger, setShowBurger] = useState(false); // Показать бургер
-    const [explode, setExplode] = useState(false); // Взрыв
-    const [isShaking, setShaking] = useState(false); // Дрожание
+    const [showBurger, setShowBurger] = useState<boolean>(false); // Показать бургер
+    const [explode, setExplode] = useState<boolean>(false); // Взрыв
+    const [isShaking, setShaking] = useState<boolean>(false); // Дрожание
+    const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
+
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            setShowBurger(true);
-            setTimeout(() => setExplode(true), 1200);
+            if (imagesLoaded) {
+                setShowBurger(true);
+                setTimeout(() => setExplode(true), 1200);
+            }
         }, 500);
 
         return () => clearTimeout(timeoutId);
-    }, []);
+    }, [imagesLoaded]);
 
     const handleRest = () => {
         if (!explode) {
             setShaking(true);
         }
+    };
+
+    const handleImagesLoaded = () => {
+        setImagesLoaded(true);
     };
 
     // Анимационные свойства
@@ -38,12 +46,12 @@ export const BurgerAnimation: React.FC = () => {
         <>
             {explode ? (
                 <animated.div>
-                    <BurgerWhole ingredients={ingredientsExplode} />
+                    <BurgerWhole ingredients={ingredientsExplode} onImagesLoaded={handleImagesLoaded}/>
                 </animated.div>
             ) : (
                 // Анимированный бургер, который может дрожать
                 <animated.div style={springProps} className={isShaking ? 'shake' : ''}>
-                    <BurgerWhole ingredients={ingredients} />
+                    <BurgerWhole ingredients={ingredients} onImagesLoaded={handleImagesLoaded}/>
                 </animated.div>
             )}
         </>

@@ -14,10 +14,11 @@ interface BurgerWholeProps {
         left: string;
         transform?: string;
     }[];
+    onImagesLoaded?: () => void;
 
 }
 
-export const BurgerWhole: React.FC<BurgerWholeProps> = ({ ingredients = [] }) => {
+export const BurgerWhole: React.FC<BurgerWholeProps> = ({ ingredients = [], onImagesLoaded }) => {
     const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
 
     useEffect(() => {
@@ -34,13 +35,14 @@ export const BurgerWhole: React.FC<BurgerWholeProps> = ({ ingredients = [] }) =>
                 const promises = ingredients.map((ingredient) => loadImage(ingredient.src));
                 await Promise.all(promises);
                 setImagesLoaded(true);
+                onImagesLoaded?.();
             } catch (error) {
                 console.error('Error loading images:', error);
             }
         };
 
         loadImages();
-    }, [ingredients]);
+    }, [ingredients, onImagesLoaded]);
 
 
     return (
