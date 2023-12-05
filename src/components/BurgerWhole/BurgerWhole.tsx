@@ -18,23 +18,32 @@ interface BurgerWholeProps {
 
 }
 
-export const BurgerWhole: React.FC<BurgerWholeProps> = ({ ingredients = [], onImagesLoaded }) => {
+export const BurgerWhole = ({ ingredients = [], onImagesLoaded }: BurgerWholeProps) => {
     const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
 
     useEffect(() => {
+        // Функция для загрузки одного изображения
         const loadImage = (src: string) => {
             return new Promise<void>((resolve) => {
+                // Создаем новый элемент Image
                 const image = new Image();
+                // Устанавливаем путь к изображению
                 image.src = src;
+                // Устанавливаем обработчик события onload, который вызывается при успешной загрузке изображения
                 image.onload = () => resolve();
             });
         };
 
+        // Функция для загрузки всех изображений
         const loadImages = async () => {
             try {
+                // Создаем массив промисов для каждого изображения
                 const promises = ingredients.map((ingredient) => loadImage(ingredient.src));
+                // Ждем, пока все промисы (загрузка изображений) будут выполнены
                 await Promise.all(promises);
+                // Устанавливаем состояние загрузки изображений в true
                 setImagesLoaded(true);
+                // Вызываем колбэк, если он был передан
                 onImagesLoaded?.();
             } catch (error) {
                 console.error('Error loading images:', error);
