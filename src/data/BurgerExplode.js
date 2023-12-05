@@ -2,7 +2,7 @@ export const ingredientsExplode = [
     {
         'name': 'bun-bottom',
         'alt': 'bun-bottom',
-        'src': `${process.env.PUBLIC_URL}/assets/burger/bun_bottom.png`,
+        'src': `${process.env.PUBLIC_URL}/assets/burger/bun_bottom_show.svg`,
         'width': '103%',
         'height': 'auto',
         'top': '102%',
