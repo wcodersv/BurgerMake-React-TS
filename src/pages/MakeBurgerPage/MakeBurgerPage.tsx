@@ -9,23 +9,31 @@ import PlaceholderQuestion from '../../components/PlaceholderQuestion';
 import ModalCheckout from '../../components/modal/ModalCheckout';
 import TotalAmount from '../../components/TotalAmount';
 
-export const MakeBurgerPage = () => {
-    interface BurgerIngredient {
-        name: string,
-        kcal: number,
-        oz: number,
-        price: number,
-        time: number,
-        img: string,
-        height: number,
-        width: number,
-        left: number,
-        img_group?: string,
-    }
+export type BurgerIngredient = {
+    name: string,
+    kcal: number,
+    oz: number,
+    price: number,
+    time: number,
+    img: string,
+    height: number,
+    width: number,
+    left: number,
+    img_group?: string,
+}
 
-    // Верхняя булка и нижняя булка
-    const finishIngredientData = ingredientsData[1];
-    const initialIngredientData = ingredientsData[0];
+export type BurgerState = {
+    ingredients: string[];
+    price: string;
+    tomatoKetchup: boolean;
+}
+
+
+export const MakeBurgerPage = () => {
+
+
+    const finishIngredientData = ingredientsData[1]; // Верхняя булка
+    const initialIngredientData = ingredientsData[0]; // Нижняя булка
     const [burgerIngredients, setBurgerIngredients] = useState<BurgerIngredient[]>([initialIngredientData]);
     const [burgerTime, setBurgerTime] = useState<number>(initialIngredientData.time);
     const [burgerWeight, setBurgerWeight] = useState<number>(initialIngredientData.oz);
@@ -40,6 +48,10 @@ export const MakeBurgerPage = () => {
 
     const [tomatoKetchup, setTomatoKetchup] = useState<boolean>(false);
     const [isCheckoutModalOpen, setCheckoutModalOpen] = useState<boolean>(false);
+
+    // Для сохранения состояния бургера перед открытием модального окна
+    const [savedBurgerState, setSavedBurgerState] = useState<BurgerState | null>(null);
+
 
     useEffect(() => {
         if (!initialIngredientData || !finishIngredientData) {
@@ -63,20 +75,45 @@ export const MakeBurgerPage = () => {
         setBurgerPrice((prev) => operation === 'add' ? prev + ingredient.price : Math.max(initialIngredientData.price, prev - ingredient.price));
     };
 
-    //Добавление ингредиента на бургер
+    // Добавление верхней булки
+    const addTopBunIfNotAdded = () => {
+        if (!isTopBunAdded) {
+            setBurgerIngredients((prevBurger) => [...prevBurger, finishIngredientData]);
+            setBottomIngredientPositions((prev) => [...prev, prev[prev.length - 1] + finishIngredientData.height]);
+            setIsTopBunAdded(true);
+            console.log('Добавление верхней булки')
+        }
+    };
+
+    // Удаление верхней булки
+    const removeTopBunIfExists = () => {
+        if (isTopBunAdded) {
+            setBurgerIngredients((prevBurger) => prevBurger.filter(item => item !== finishIngredientData));
+            setIsTopBunAdded(false);
+            console.log('Удаление верхней булки');
+        }
+    };
+
+
+    // Добавление ингредиента на бургер
     const addIngredient = (ingredient: BurgerIngredient) => {
+        if (isTopBunAdded) {
+            removeTopBunIfExists();
+        }
+
         setBurgerIngredients((prevBurger) => [...prevBurger, ingredient]);
+
         updateStats(ingredient, 'add');
         setBottomIngredientPositions((prev) => [...prev, prev[prev.length - 1] + ingredient.height]);
         setIsImageVisible(true);
-
         setIsAddingBurger(true);
     };
+
 
     // Удаление ингредиента с бургера
     const removeIngredient = (ingredient: BurgerIngredient) => {
         setBurgerIngredients((prevBurger) => {
-            const index = prevBurger.findIndex((item) => item === ingredient);
+            const index = prevBurger.lastIndexOf(ingredient);
             if (index !== -1) {
                 const updatedBurger = [...prevBurger];
                 updatedBurger.splice(index, 1);
@@ -86,23 +123,9 @@ export const MakeBurgerPage = () => {
         });
 
         updateStats(ingredient, 'remove');
+        removeTopBunIfExists();
     };
 
-
-    // Добавление верхней булки
-    const addTopBunIfNotAdded = () => {
-        if (!isTopBunAdded) {
-            setBurgerIngredients((prevBurger) => [...prevBurger, finishIngredientData]);
-            setBottomIngredientPositions((prev) => [...prev, prev[prev.length - 1] + finishIngredientData.height]);
-            setIsTopBunAdded(true);
-        }
-    };
-
-
-    // Удаление верхней булки
-    const removeTopBunIfExists = () => {
-        setBurgerIngredients((prevBurger) => prevBurger.filter(item => item !== finishIngredientData));
-    };
 
     // Обработка изменений в burger
     useEffect(() => {
@@ -114,16 +137,13 @@ export const MakeBurgerPage = () => {
                 }
             }, 5000);
 
-            removeTopBunIfExists();
-            setIsTopBunAdded(false);
-            setIsAddingBurger(false);
-
             return () => {
                 clearTimeout(timeoutId);
             };
+        } else {
+            removeTopBunIfExists();
         }
-
-    }, [isAddingBurger]);
+    }, [burgerIngredients, isAddingBurger]);
 
     // Добавить или удалить вес кетчупа
     useEffect(() => {
@@ -171,12 +191,34 @@ export const MakeBurgerPage = () => {
 
     const toggleModal = () => {
         setCheckoutModalOpen(!isCheckoutModalOpen);
-        setBurgerIngredients([initialIngredientData]);
-        setBurgerTime(initialIngredientData.time);
-        setBurgerWeight(initialIngredientData.oz);
-        setBurgerKcal(initialIngredientData.kcal);
-        setBurgerPrice(initialIngredientData.price);
-        setTomatoKetchup(false);
+
+        // Если модальное окно закрывается, восстанавливаем сохраненное состояние бургера
+        if (isCheckoutModalOpen) {
+            setBurgerIngredients([initialIngredientData]);
+            setBurgerTime(initialIngredientData.time);
+            setBurgerWeight(initialIngredientData.oz);
+            setBurgerKcal(initialIngredientData.kcal);
+            setBurgerPrice(initialIngredientData.price);
+            setTomatoKetchup(false);
+        } else {
+            // Если модальное окно открывается и верхней булки нет, добавляем ее
+            if (!isTopBunAdded) {
+                addTopBunIfNotAdded()
+            }
+
+            // Добавляем верхнюю булку в текущее состояние бургера перед сохранением
+            const updatedBurgerIngredients = isTopBunAdded
+                ? [...burgerIngredients]
+                : [...burgerIngredients, finishIngredientData];
+
+            // Сохраняем текущее состояние бургера
+            const ingredientNames = updatedBurgerIngredients.map((ingredient) => ingredient.name);
+            setSavedBurgerState({
+                ingredients: ingredientNames,
+                price: `$${burgerPrice.toFixed(2)}`,
+                tomatoKetchup: tomatoKetchup,
+            });
+        }
     };
 
     return (
@@ -257,7 +299,7 @@ export const MakeBurgerPage = () => {
                     <PlaceholderQuestion />
                 </animated.div>
             </div>
-            {isCheckoutModalOpen ? <ModalCheckout toggleModal={toggleModal} /> : ''}
+            {isCheckoutModalOpen ? <ModalCheckout toggleModal={toggleModal} dataBurger={savedBurgerState} /> : ''}
 
         </main>
     )

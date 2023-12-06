@@ -16,6 +16,7 @@ import 'react-phone-input-2/lib/style.css';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import SelectField from '../../form/SelectField';
 import ModalSuccess from '../ModalSuccess';
+import { BurgerState } from '../../../pages/MakeBurgerPage/MakeBurgerPage';
 
 
 
@@ -40,7 +41,8 @@ const inputList = {
 const optionsSelectTime = ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM',];
 
 interface ModalCheckoutProps {
-    toggleModal: () => void,
+    toggleModal: () => void;
+    dataBurger: BurgerState | null;
 }
 
 export type FormValues = {
@@ -51,7 +53,7 @@ export type FormValues = {
 }
 
 
-export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
+export const ModalCheckout = ({ toggleModal, dataBurger }: ModalCheckoutProps) => {
     const methods = useForm<FormValues>({
         defaultValues: {
             username: '',
@@ -80,7 +82,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
     };
 
     const onSubmitForm = (data: FormValues) => {
-        console.log(data)
+        console.log(data, dataBurger)
         setFormData(data);
         setFormSubmitted(true);
     }
@@ -95,8 +97,6 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
             setFormSubmitted(true);
         }
     }, [isSubmitSuccessful, reset])
-
-    console.log(errors)
 
 
     return (
@@ -284,7 +284,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                 </div>
             </form>
             {/*! Удалить в самом конце проекта */}
-            <DevTool control={control} />
+            {/* <DevTool control={control} /> */}
 
             {isFormSubmitted ? <ModalSuccess toggleModal={toggleModal} data={formData} /> : ''}
 
