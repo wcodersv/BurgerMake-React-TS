@@ -71,8 +71,6 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
     const [formData, setFormData] = useState<FormValues>({ username: '', phonenumber: '', shippingAddress: '', timedelivery: '' });
 
 
-
-
     const handleInputFocus = (inputName: string) => {
         setInputFocus(inputName);
     };
@@ -91,13 +89,14 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
         console.log('Form errors', errors)
     }
 
-
     useEffect(() => {
         if (isSubmitSuccessful) {
             reset();
             setFormSubmitted(true);
         }
     }, [isSubmitSuccessful, reset])
+
+    console.log(errors)
 
 
     return (
@@ -110,7 +109,11 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
             >
                 <div className={styles.modal_form_main}>
                     {/* firstName */}
-                    <InputWrapper onFocus={() => handleInputFocus('username')} onBlur={handleInputBlur} hasError={errors.username ? true : false}>
+                    <InputWrapper
+                        onFocus={() => handleInputFocus('username')}
+                        onBlur={handleInputBlur}
+                        hasError={errors.username ? true : false}
+                    >
                         <InputImg
                             srcImg={
                                 errors.username
@@ -124,8 +127,10 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                             label="username"
                             register={register}
                             required='Required field'
+                            maxLengthInput={100}
                             idHtmlFor='usernameinput'
                             isInputFocused={inputFocus === 'username' || !!getValues('username')}
+
                         />
 
                         <InputLabel
@@ -153,7 +158,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                             name='phonenumber'
                             control={control}
                             rules={{
-                                required: 'Required fiel',
+                                required: 'Required field',
                                 validate: {
                                     validPhoneNumber: (value) => {
                                         try {
@@ -202,8 +207,12 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                         <p className={styles.modal_error}>{errors.phonenumber?.message}</p>
                     </InputWrapper>
 
-                    {/* email */}
-                    <InputWrapper onFocus={() => handleInputFocus('shippingAddress')} onBlur={handleInputBlur} hasError={errors.shippingAddress ? true : false}>
+                    {/* address */}
+                    <InputWrapper
+                        onFocus={() => handleInputFocus('shippingAddress')}
+                        onBlur={handleInputBlur}
+                        hasError={errors.shippingAddress ? true : false}
+                    >
                         <InputImg
                             srcImg={
                                 errors.shippingAddress
@@ -218,6 +227,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                             typeInput='address'
                             register={register}
                             required='Required field'
+                            maxLengthInput={255}
                             idHtmlFor='shippingaddressinput'
                             isInputFocused={inputFocus === 'shippingAddress' || !!getValues('shippingAddress')}
                         />
@@ -234,7 +244,9 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                     {/* time */}
                     <InputWrapper onFocus={() => handleInputFocus('timedelivery')} onBlur={handleInputBlur} hasError={errors.timedelivery ? true : false}>
                         <SelectField
-                            {...register("timedelivery")}
+                            name='timedelivery'
+                            register={register}
+                            required='Required field'
                             options={optionsSelectTime}
                             isInputFocused={inputFocus === 'timedelivery' || !!getValues('timedelivery')}
                             idHtmlFor='timedeliveryinput'
@@ -272,7 +284,7 @@ export const ModalCheckout = ({ toggleModal }: ModalCheckoutProps) => {
                 </div>
             </form>
             {/*! Удалить в самом конце проекта */}
-            {/* <DevTool control={control} /> */}
+            <DevTool control={control} />
 
             {isFormSubmitted ? <ModalSuccess toggleModal={toggleModal} data={formData} /> : ''}
 
