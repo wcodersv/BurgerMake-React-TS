@@ -81,7 +81,6 @@ export const MakeBurgerPage = () => {
             setBurgerIngredients((prevBurger) => [...prevBurger, finishIngredientData]);
             setBottomIngredientPositions((prev) => [...prev, prev[prev.length - 1] + finishIngredientData.height]);
             setIsTopBunAdded(true);
-            console.log('Добавление верхней булки')
         }
     };
 
@@ -90,7 +89,6 @@ export const MakeBurgerPage = () => {
         if (isTopBunAdded) {
             setBurgerIngredients((prevBurger) => prevBurger.filter(item => item !== finishIngredientData));
             setIsTopBunAdded(false);
-            console.log('Удаление верхней булки');
         }
     };
 
